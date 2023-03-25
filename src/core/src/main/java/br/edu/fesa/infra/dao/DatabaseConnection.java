@@ -1,6 +1,8 @@
-package br.edu.fesa.dao;
+package br.edu.fesa.infra.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DatabaseConnection {
     private static Connection conexao = null;

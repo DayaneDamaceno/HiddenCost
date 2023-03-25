@@ -1,11 +1,11 @@
-package br.edu.fesa.dao;
+package br.edu.fesa.infra.dao;
 
 import java.util.List;
 
 public interface Dao<T> {
     List<T> obterTodos();
 
-    T buscar(String[] params);
+    T buscar(T t);
 
     void salvar(T t);
 

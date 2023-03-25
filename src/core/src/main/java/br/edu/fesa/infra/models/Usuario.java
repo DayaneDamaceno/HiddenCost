@@ -1,4 +1,4 @@
-package br.edu.fesa.models;
+package br.edu.fesa.infra.models;
 
 public class Usuario {
     private Integer id;

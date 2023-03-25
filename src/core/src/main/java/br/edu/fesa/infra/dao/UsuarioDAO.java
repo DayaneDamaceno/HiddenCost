@@ -1,6 +1,6 @@
-package br.edu.fesa.dao;
+package br.edu.fesa.infra.dao;
 
-import br.edu.fesa.models.Usuario;
+import br.edu.fesa.infra.models.Usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,12 +22,12 @@ public class UsuarioDAO implements Dao<Usuario> {
     }
 
     @Override
-    public Usuario buscar(String[] params) {
+    public Usuario buscar(Usuario usuario) {
         try {
             String query = "SELECT * FROM Usuario where email=? and senha=?";
             PreparedStatement statement = databaseConnection.prepareStatement(query);
-            statement.setString(1, params[0]);
-            statement.setString(2, params[1]);
+            statement.setString(1, usuario.getEmail());
+            statement.setString(2, usuario.getSenha());
             ResultSet resultSet = statement.executeQuery();
 
             boolean isEmpty = !resultSet.isBeforeFirst();
@@ -36,11 +36,8 @@ public class UsuarioDAO implements Dao<Usuario> {
                 return null;
             }
 
-            Usuario usuario = new Usuario();
             while (resultSet.next()) {
                 usuario.setNome(resultSet.getString("nome"));
-                usuario.setEmail(resultSet.getString("email"));
-                usuario.setSenha(resultSet.getString("senha"));
             }
 
             return usuario;
