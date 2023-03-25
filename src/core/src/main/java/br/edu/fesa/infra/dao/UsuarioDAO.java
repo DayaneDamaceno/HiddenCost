@@ -24,7 +24,7 @@ public class UsuarioDAO implements Dao<Usuario> {
     @Override
     public Usuario buscar(Usuario usuario) {
         try {
-            String query = "SELECT * FROM Usuario where email=? and senha=?";
+            String query = "SELECT * FROM USUARIOS where email=? and senha=?";
             PreparedStatement statement = databaseConnection.prepareStatement(query);
             statement.setString(1, usuario.getEmail());
             statement.setString(2, usuario.getSenha());
