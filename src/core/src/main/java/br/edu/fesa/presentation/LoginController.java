@@ -15,7 +15,7 @@ public class LoginController {
     @FXML
     private TextField senha;
     @FXML
-    protected void sendToHome()  throws IOException {
+    protected void sendToHomeView()  throws IOException {
         UsuarioDAO usuarioDao = new UsuarioDAO();
 
         Usuario usuario = new Usuario();
@@ -25,7 +25,7 @@ public class LoginController {
 
         if(usuario != null){
             System.out.printf("%s é um usuario valido%n", usuario.getNome());
-            MainApplication.setRoot("hello-view");
+            MainApplication.setRoot("listagem-usuario");
         }
         else{
             System.out.println("Usuario não encontrado");
@@ -37,5 +37,10 @@ public class LoginController {
             alert.showAndWait();
         }
 
+    }
+
+    @FXML
+    protected void sendToCadastroView()  throws IOException {
+        MainApplication.setRoot("cadastro-view");
     }
 }

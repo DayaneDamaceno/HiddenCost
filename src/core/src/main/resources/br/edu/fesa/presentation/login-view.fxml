@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.PasswordField?>
@@ -11,20 +12,28 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.presentation.LoginController">
     <left>
-        <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #0598ff;" BorderPane.alignment="CENTER">
-            <Text fill="WHITE" layoutX="74.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HIDDENCOSTS" textAlignment="CENTER">
+        <AnchorPane prefHeight="460.0" prefWidth="311.0" style="-fx-background-color: #E9E9E9; -fx-background-radius: 10;" BorderPane.alignment="CENTER">
+            <Text fill="#0589ff" layoutX="23.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HIDDENCOSTS" textAlignment="CENTER">
                 <font>
                     <Font name="Yu Gothic Regular" size="28.0" />
                 </font>
             </Text>
+         <Text fill="#0589ff" layoutX="23.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Calculadora de custos, veja como fazer &#10;de forma rápida e fácil">
+            <font>
+               <Font name="Yu Gothic Regular" size="14.0" />
+            </font>
+         </Text>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
         </AnchorPane>
     </left>
     <right>
-        <AnchorPane prefHeight="500.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="500.0" prefWidth="381.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
             <TextField fx:id="email" layoutX="101.0" layoutY="202.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
             <PasswordField fx:id="senha" layoutX="100.0" layoutY="250.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
-            <Button layoutX="149.0" layoutY="301.0" mnemonicParsing="false" onAction="#sendToHome" style="-fx-background-color: #0589ff;" text="Login" textFill="WHITE" />
-            <Hyperlink layoutX="90.0" layoutY="431.0" text="Não é um usuário? Cadastre-se" />
+            <Button layoutX="149.0" layoutY="301.0" mnemonicParsing="false" onAction="#sendToHomeView" style="-fx-background-color: #0589ff;" text="Login" textFill="WHITE" />
+            <Hyperlink layoutX="90.0" layoutY="431.0" onAction="#sendToCadastroView" text="Não é um usuário? Cadastre-se" />
             <Text fill="#797979" layoutX="143.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
                 <font>
                     <Font name="Yu Gothic Regular" size="19.0" />

@@ -19,6 +19,11 @@ public class Usuario {
         this.email = email;
         this.senha = senha;
     }
+    public Usuario(Integer id, String nome, String email) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+    }
 
     public Integer getId() {
         return id;

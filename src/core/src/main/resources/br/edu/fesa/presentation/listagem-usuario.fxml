@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:controller="br.edu.fesa.presentation.UsuariosController"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F9F9F9;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <AnchorPane prefHeight="400.0" prefWidth="107.0" style="-fx-background-color: #E9E9E9;" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="14.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home" />
+            <Text layoutX="14.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuários" />
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="259.0" style="-fx-background-color: #E9E9E9;" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="23.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Perfil de UsuarioX">
+               <font>
+                  <Font size="14.0" />
+               </font></Text>
+            <TextField layoutX="23.0" layoutY="94.0" promptText="Nome do Usuário" style="-fx-background-color: white; -fx-background-radius: 3px;" />
+            <TextField layoutX="23.0" layoutY="138.0" promptText="Senha do Usuário" style="-fx-background-color: white; -fx-background-radius: 3px;" />
+            <TextField layoutX="24.0" layoutY="182.0" promptText="Email do Usuario" style="-fx-background-color: white; -fx-background-radius: 3px;" />
+            <Button layoutX="24.0" layoutY="228.0" mnemonicParsing="false" style="-fx-background-radius: 3px;" text="Editar" />
+            <Button layoutX="88.0" layoutY="228.0" mnemonicParsing="false" style="-fx-background-color: red; -fx-background-radius: 3px;" text="Excluir" />
+         </children>
+      </AnchorPane>
+   </right>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
+            <Text layoutX="15.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuários">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Text>
+            <ListView fx:id="usuariosListView" layoutX="14.0" layoutY="49.0" prefHeight="340.0" prefWidth="207.0" />
+      </AnchorPane>
+   </center>
+</BorderPane>
