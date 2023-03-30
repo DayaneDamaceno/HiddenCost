@@ -9,7 +9,7 @@ public interface Dao<T> {
 
     void salvar(T t);
 
-    void atualizar(T t, String[] params);
+    void atualizar(T t);
 
     void deletar(T t);
 }

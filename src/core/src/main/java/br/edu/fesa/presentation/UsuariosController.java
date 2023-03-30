@@ -6,8 +6,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,12 +21,15 @@ public class UsuariosController implements Initializable {
 
     @FXML
     private TextField nome;
+
+    @FXML
+    private Text txtUsuarioSelecionado;
     @FXML
     private TextField email;
     @FXML
     private TextField senha;
     @FXML
-    private ListView<String> usuariosListView;
+    private ListView<Usuario> usuariosListView;
 
     private UsuarioDAO usuarioDao;
 
@@ -37,23 +43,57 @@ public class UsuariosController implements Initializable {
         MainApplication.setRoot("login-view");
     }
     @FXML
-    protected void onClickCadastroButton()  throws IOException {
-        Usuario usuario = new Usuario();
-        usuario.setNome(nome.getText());
-        usuario.setEmail(email.getText());
-        usuario.setSenha(senha.getText());
-        usuarioDao.salvar(usuario);
+    protected void onClickEditarButton()  throws IOException {
+        Usuario usuarioSelecionado = usuariosListView.getSelectionModel().getSelectedItem();
+        usuarioSelecionado.setNome(nome.getText());
+        usuarioSelecionado.setEmail(email.getText());
+        if(!senha.getText().isEmpty()){
+            usuarioSelecionado.setSenha(senha.getText());
+        }
 
-        MainApplication.setRoot("login-view");
+        usuarioDao.atualizar(usuarioSelecionado);
+        senha.setText("");
+        txtUsuarioSelecionado.setText(nome.getText());
+        usuariosListView.refresh();
+    }
+
+    @FXML
+    protected void onClickExcluirButton()  throws IOException {
+        Usuario usuarioSelecionado = usuariosListView.getSelectionModel().getSelectedItem();
+        usuarioDao.deletar(usuarioSelecionado);
+        usuariosListView.getItems().remove(usuarioSelecionado);
+        nome.setText("");
+        email.setText("");
+        senha.setText("");
 
     }
+
     protected void loadUsuarios(){
-        List<Usuario> users = usuarioDao.obterTodos();
-        ObservableList<String> names = FXCollections.observableArrayList(users.stream().map(Usuario::getNome).toList());
+        ObservableList<Usuario> usuarios = FXCollections.observableArrayList(usuarioDao.obterTodos());
+        usuariosListView.setItems(usuarios);
+        usuariosListView.setCellFactory(param -> new ListCell<Usuario>() {
+            @Override
+            protected void updateItem(Usuario item, boolean empty) {
+                super.updateItem(item, empty);
 
-        ObservableList<Usuario> teste = FXCollections.observableArrayList(users);
-        usuariosListView.setItems(names);
+                if (empty || item == null || item.getNome() == null) {
+                    setText(null);
+                } else {
+                    setText(item.getNome());
+                }
+            }
+        });
+
 
     }
+    @FXML
+    protected void onClickItemListUsuarios(MouseEvent arg0) {
+        Usuario usuarioSelecionado = usuariosListView.getSelectionModel().getSelectedItem();
+        txtUsuarioSelecionado.setText(usuarioSelecionado.getNome());
+        nome.setText(usuarioSelecionado.getNome());
+        email.setText(usuarioSelecionado.getEmail());
+    }
+
+
 
 }

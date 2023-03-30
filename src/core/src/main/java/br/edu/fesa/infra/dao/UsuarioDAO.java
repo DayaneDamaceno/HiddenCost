@@ -27,7 +27,7 @@ public class UsuarioDAO implements Dao<Usuario> {
             PreparedStatement statement = databaseConnection.prepareStatement(query);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
-                usuarios.add(new Usuario(result.getInt("ID_USUARIO"), result.getString("NOME"), result.getString("EMAIL")));
+                usuarios.add(new Usuario(result.getInt("ID_USUARIO"), result.getString("NOME"), result.getString("EMAIL"), result.getString("SENHA")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,13 +78,32 @@ public class UsuarioDAO implements Dao<Usuario> {
     }
 
     @Override
-    public void atualizar(Usuario usuario, String[] params) {
+    public void atualizar(Usuario usuario) {
+        try {
+            String query = "UPDATE USUARIOS SET nome=?, email=?, senha=? WHERE id_usuario = ?";
+            PreparedStatement statement = databaseConnection.prepareStatement(query);
+            statement.setString(1, usuario.getNome());
+            statement.setString(2, usuario.getEmail());
+            statement.setString(3, usuario.getSenha());
+            statement.setInt(4, usuario.getId());
+            statement.execute();
 
+        }catch (SQLException err){
+            System.out.println("Erro na base de dados! " + err);
+        }
     }
 
     @Override
     public void deletar(Usuario usuario) {
+        String query = "DELETE FROM USUARIOS WHERE id_usuario = ?";
 
+        try {
+            PreparedStatement statement = databaseConnection.prepareStatement(query);
+            statement.setInt(1, usuario.getId());
+            statement.execute();
+        } catch (SQLException err){
+            System.out.println("Erro na base de dados! " + err);
+        }
     }
 
 
