@@ -1,5 +1,7 @@
 package br.edu.fesa.infra.models;
 
+import java.util.regex.Pattern;
+
 public class Usuario {
     private Integer id;
     private String nome;
@@ -51,5 +53,22 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+
+    public boolean validate(){
+        return validateSenha() && validateEmail();
+    }
+
+    private boolean validateSenha(){
+        String PASSWORD_REGEX = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$";
+        Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
+
+        return PASSWORD_PATTERN.matcher(this.senha).matches();
+    }
+    private boolean validateEmail(){
+        String EMAIL_REGEX =  "^(.+)@(.+)$";
+        Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+        return EMAIL_PATTERN.matcher(this.email).matches();
     }
 }
