@@ -41,7 +41,7 @@
                   <Font size="21.0" />
                </font>
             </Text>
-            <ListView fx:id="usuariosListView" layoutX="14.0" layoutY="49.0" onMouseClicked="#onClickItemListUsuarios" prefHeight="340.0" prefWidth="207.0" />
+            <ListView fx:id="usuariosListView" editable="true" layoutX="14.0" layoutY="49.0" onMouseClicked="#onClickItemListUsuarios" prefHeight="340.0" prefWidth="207.0" />
       </AnchorPane>
    </center>
 </BorderPane>

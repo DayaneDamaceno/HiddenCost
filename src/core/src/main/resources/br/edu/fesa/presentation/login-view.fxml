@@ -32,7 +32,7 @@
         <AnchorPane prefHeight="500.0" prefWidth="381.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
             <TextField fx:id="email" layoutX="101.0" layoutY="202.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
             <PasswordField fx:id="senha" layoutX="100.0" layoutY="250.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
-            <Button layoutX="149.0" layoutY="301.0" mnemonicParsing="false" onAction="#sendToHomeView" style="-fx-background-color: #0589ff;" text="Login" textFill="WHITE" />
+            <Button layoutX="149.0" layoutY="301.0" mnemonicParsing="false" onAction="#sendToProdutosView" style="-fx-background-color: #0589ff;" text="Login" textFill="WHITE" />
             <Hyperlink layoutX="90.0" layoutY="431.0" onAction="#sendToCadastroView" text="Não é um usuário? Cadastre-se" />
             <Text fill="#797979" layoutX="143.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
                 <font>

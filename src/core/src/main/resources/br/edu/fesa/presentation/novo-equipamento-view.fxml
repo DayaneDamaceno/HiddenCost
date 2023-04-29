@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="1256.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.presentation.EquipamentosController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <VBox prefHeight="140.0" prefWidth="107.0" spacing="12.0" style="-fx-background-color: F3F5F9;" GridPane.columnSpan="2" GridPane.rowSpan="12">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Logo.jpg" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="16.0" />
+               </VBox.margin>
+            </ImageView>
+            <Button graphicTextGap="9.0" mnemonicParsing="false" onAction="#sendToProdutosView" style="-fx-background-color: F3F5F9;" text="Produtos" textFill="#737784">
+               <graphic>
+                  <SVGPath content="M13.9999 6.86373H1.99992C1.82311 6.86373 1.65354 6.93397 1.52851 7.05899C1.40349 7.18402 1.33325 7.35358 1.33325 7.5304C1.33328 8.70061 1.64134 9.8502 2.22646 10.8636C2.81158 11.8771 3.65315 12.7186 4.66659 13.3037V14.1971C4.66659 14.3739 4.73682 14.5434 4.86185 14.6685C4.98687 14.7935 5.15644 14.8637 5.33325 14.8637H10.6666C10.8434 14.8637 11.013 14.7935 11.138 14.6685C11.263 14.5434 11.3333 14.3739 11.3333 14.1971V13.3037C12.3467 12.7186 13.1883 11.8771 13.7734 10.8636C14.3585 9.8502 14.6666 8.70061 14.6666 7.5304C14.6666 7.35358 14.5963 7.18402 14.4713 7.05899C14.3463 6.93397 14.1767 6.86373 13.9999 6.86373ZM10.3666 12.3037C10.2556 12.3596 10.1625 12.4454 10.0977 12.5515C10.0329 12.6575 9.99905 12.7795 9.99992 12.9037V13.5304H5.99992V12.9037C6.00078 12.7795 5.96691 12.6575 5.90212 12.5515C5.83733 12.4454 5.74421 12.3596 5.63325 12.3037C4.84453 11.9137 4.16454 11.3347 3.65389 10.6181C3.14325 9.90162 2.81781 9.06988 2.70659 8.19706H13.2933C13.182 9.06988 12.8566 9.90162 12.3459 10.6181C11.8353 11.3347 11.1553 11.9137 10.3666 12.3037ZM5.99992 6.19706V5.48373C5.99893 4.69948 5.69291 3.94638 5.14659 3.38373C4.99202 3.22754 4.87 3.04223 4.7876 2.83852C4.7052 2.63482 4.66407 2.41678 4.66659 2.19706V1.5304H3.33325V2.19706C3.33076 2.98592 3.63704 3.74444 4.18659 4.3104C4.49551 4.6226 4.66811 5.04452 4.66659 5.48373V6.19706H5.99992ZM8.66659 6.19706V5.48373C8.6656 4.69948 8.35958 3.94638 7.81325 3.38373C7.65869 3.22754 7.53667 3.04223 7.45427 2.83852C7.37187 2.63482 7.33074 2.41678 7.33325 2.19706V1.5304H5.99992V2.19706C6.00091 2.98131 6.30693 3.73441 6.85325 4.29706C7.00782 4.45325 7.12984 4.63856 7.21224 4.84227C7.29463 5.04597 7.33577 5.26401 7.33325 5.48373V6.19706H8.66659ZM11.3333 6.19706V5.48373C11.3323 4.69948 11.0262 3.94638 10.4799 3.38373C10.3254 3.22754 10.2033 3.04223 10.1209 2.83852C10.0385 2.63482 9.9974 2.41678 9.99992 2.19706V1.5304H8.66659V2.19706C8.66757 2.98131 8.9736 3.73441 9.51992 4.29706C9.67449 4.45325 9.79651 4.63856 9.8789 4.84227C9.9613 5.04597 10.0024 5.26401 9.99992 5.48373V6.19706H11.3333Z" fill="#737784" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button graphicTextGap="9.0" layoutX="36.0" layoutY="97.0" mnemonicParsing="false" onAction="#sendToIngredientesView" style="-fx-background-color: F3F5F9;" text="Ingredientes" textFill="#737784">
+               <graphic>
+                  <SVGPath content="M14.2706 4.25432L8.27059 1.58765C8.18527 1.54974 8.09295 1.53015 7.99959 1.53015C7.90622 1.53015 7.8139 1.54974 7.72859 1.58765L1.72859 4.25432C1.71525 4.26032 1.70592 4.27032 1.69259 4.27765C1.67392 4.28699 1.65392 4.29299 1.63659 4.30432C1.62192 4.31432 1.61059 4.32699 1.59659 4.33765C1.54785 4.37387 1.50511 4.41751 1.46992 4.46699C1.45659 4.48566 1.44259 4.50232 1.43059 4.52099C1.41074 4.55622 1.3938 4.59301 1.37992 4.63099C1.37392 4.64899 1.36459 4.66565 1.35925 4.68365C1.34251 4.74221 1.33376 4.80276 1.33325 4.86365V11.5303C1.33325 11.7943 1.48792 12.0323 1.72925 12.1397L7.72925 14.8063C7.81592 14.845 7.90792 14.8637 7.99992 14.8637C8.09274 14.8613 8.18404 14.8395 8.26792 14.7997L8.27059 14.8063L14.2706 12.1397C14.3885 12.0874 14.4887 12.0019 14.559 11.8938C14.6293 11.7856 14.6667 11.6593 14.6666 11.5303V4.86365C14.6667 4.73465 14.6293 4.60839 14.559 4.50022C14.4887 4.39205 14.3885 4.30662 14.2706 4.25432ZM7.99992 2.92699L12.3586 4.86365L7.99992 6.80032L7.12792 6.41299L3.64192 4.86365L7.99992 2.92699ZM2.66659 11.0977V5.88965L7.33325 7.96365V13.171L2.66659 11.0977ZM8.66659 13.171V7.96365L13.3333 5.88965V11.0977L8.66659 13.171M14.2706 4.25432L8.27059 1.58765C8.18527 1.54974 8.09295 1.53015 7.99959 1.53015C7.90622 1.53015 7.8139 1.54974 7.72859 1.58765L1.72859 4.25432C1.71525 4.26032 1.70592 4.27032 1.69259 4.27765C1.67392 4.28699 1.65392 4.29299 1.63659 4.30432C1.62192 4.31432 1.61059 4.32699 1.59659 4.33765C1.54785 4.37387 1.50511 4.41751 1.46992 4.46699C1.45659 4.48566 1.44259 4.50232 1.43059 4.52099C1.41074 4.55622 1.3938 4.59301 1.37992 4.63099C1.37392 4.64899 1.36459 4.66565 1.35925 4.68365C1.34251 4.74221 1.33376 4.80276 1.33325 4.86365V11.5303C1.33325 11.7943 1.48792 12.0323 1.72925 12.1397L7.72925 14.8063C7.81592 14.845 7.90792 14.8637 7.99992 14.8637C8.09274 14.8613 8.18404 14.8395 8.26792 14.7997L8.27059 14.8063L14.2706 12.1397C14.3885 12.0874 14.4887 12.0019 14.559 11.8938C14.6293 11.7856 14.6667 11.6593 14.6666 11.5303V4.86365C14.6667 4.73465 14.6293 4.60839 14.559 4.50022C14.4887 4.39205 14.3885 4.30662 14.2706 4.25432ZM7.99992 2.92699L12.3586 4.86365L7.99992 6.80032L7.12792 6.41299L3.64192 4.86365L7.99992 2.92699ZM2.66659 11.0977V5.88965L7.33325 7.96365V13.171L2.66659 11.0977ZM8.66659 13.171V7.96365L13.3333 5.88965V11.0977L8.66659 13.171Z" fill="#737784" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button graphicTextGap="9.0" layoutX="36.0" layoutY="262.0" mnemonicParsing="false" onAction="#sendToEquipamentosView" style="-fx-background-color: F3F5F9;" text="Equipamentos" textFill="#0e4ae4">
+               <graphic>
+                  <SVGPath content="M3.41464 14.1971C3.66664 14.4491 4.0013 14.5877 4.3573 14.5877C4.7133 14.5877 5.04797 14.4491 5.29997 14.1971L8.19064 11.3064C8.66939 11.4541 9.16763 11.5289 9.66864 11.5284C10.3253 11.5304 10.9759 11.4021 11.5826 11.1509C12.1893 10.8997 12.7402 10.5307 13.2033 10.0651C13.9024 9.3679 14.379 8.47899 14.5727 7.51085C14.7663 6.5427 14.6684 5.53886 14.2913 4.6264L13.9113 3.70107L11.082 6.52973L9.66797 5.11507L12.4966 2.2864L11.5706 1.90573C10.9665 1.65702 10.3193 1.5295 9.66597 1.5304C8.33064 1.5304 7.0753 2.0504 6.13197 2.9944C5.48729 3.63694 5.0308 4.44369 4.81198 5.3272C4.59316 6.2107 4.62036 7.13725 4.89064 8.0064L1.99997 10.8971C1.75017 11.1472 1.60986 11.4862 1.60986 11.8397C1.60986 12.1932 1.75017 12.5323 1.99997 12.7824L3.41464 14.1971ZM6.44664 8.3364L6.2773 7.92573C6.00041 7.25664 5.92838 6.52041 6.07032 5.81033C6.21226 5.10026 6.5618 4.4483 7.07464 3.93707C7.45575 3.55348 7.91753 3.25961 8.42643 3.07683C8.93533 2.89406 9.47856 2.82695 10.0166 2.8804L7.7813 5.11573L11.0806 8.41573L13.3173 6.17907C13.3695 6.71747 13.3016 7.26075 13.1187 7.7698C12.9358 8.27885 12.6422 8.74103 12.2593 9.12307C11.226 10.1564 9.61664 10.4744 8.26997 9.9204L7.85997 9.7504L4.3573 13.2544H4.35797L4.3573 13.9211V13.2544L2.94264 11.8397L6.44664 8.3364Z" fill="#0e4ae4" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="26.0" left="26.0" right="26.0" top="26.0" />
+         </padding>
+      </VBox>
+      <Label text="Adicione um novo equipamento" GridPane.columnIndex="3" GridPane.columnSpan="6" GridPane.rowIndex="1">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="14.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="4" GridPane.valignment="TOP">
+         <children>
+            <VBox prefHeight="56.0" prefWidth="358.0" spacing="2.0">
+               <children>
+                  <Label text="Nome do produto">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
+               </children>
+            </VBox>
+            <VBox prefHeight="56.0" prefWidth="358.0" spacing="2.0">
+               <children>
+                  <Label text="Tipo de consumo (elétrico ou gás)">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <ComboBox prefHeight="28.0" prefWidth="359.0" promptText="Selecione um tipo" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
+               </children>
+            </VBox>
+            <VBox prefHeight="58.0" prefWidth="358.0" spacing="6.0">
+               <children>
+                  <Label text="Consumo médio mensal">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
+               </children>
+            </VBox>
+            <Button mnemonicParsing="false" prefWidth="61.0" style="-fx-background-color: #0589ff;" text="Salvar" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</GridPane>
