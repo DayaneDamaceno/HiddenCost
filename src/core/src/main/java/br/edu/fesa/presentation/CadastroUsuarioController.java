@@ -30,7 +30,7 @@ public class CadastroUsuarioController {
 
     @FXML
     protected void sendToLogin()  throws IOException {
-        MainApplication.setRoot("login-view");
+        MainApplication.setRoot("log-in-view");
     }
     @FXML
     protected void onClickCadastroButton()  throws IOException {
@@ -40,7 +40,7 @@ public class CadastroUsuarioController {
         usuario.setSenha(senha.getText());
         if(usuario.validate()){
             usuarioDao.salvar(usuario);
-            MainApplication.setRoot("login-view");
+            MainApplication.setRoot("log-in-view");
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Aviso");

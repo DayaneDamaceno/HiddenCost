@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1280.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.presentation.LoginController">
+   <children>
+      <StackPane alignment="BOTTOM_LEFT" maxWidth="1.7976931348623157E308" prefHeight="150.0" style="-fx-background-color: F3F5F9;" HBox.hgrow="ALWAYS">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="12.0" style="-fx-background-color: F3F5F9;" StackPane.alignment="TOP_LEFT">
+               <children>
+                  <ImageView fitHeight="107.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/Logo.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label text="Hidden Cost" textFill="#0e4ae4">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="30.0" layoutY="114.0" text="Calculadora de custos, veja como fazer de forma simples e rápida, sem planilha!" textFill="#0e4ae4" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="32.0" left="32.0" right="32.0" top="50.0" />
+               </padding>
+            </VBox>
+            <ImageView fitHeight="700.0" fitWidth="568.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/login.jpg" />
+               </image>
+            </ImageView>
+         </children>
+         <HBox.margin>
+            <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+         </HBox.margin>
+      </StackPane>
+      <VBox prefHeight="548.0" prefWidth="374.0" spacing="12.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="ALWAYS">
+         <children>
+            <Label layoutX="10.0" layoutY="10.0" text="Bem vindo">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+            <Label text="Preencha os dados abaixo">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label text="E-mail">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="email" promptText="examplo@dominio.com" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <Label text="Senha">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="senha" layoutX="100.0" layoutY="250.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;">
+               <font>
+                  <Font size="16.0" />
+               </font></PasswordField>
+            <Button alignment="CENTER" layoutX="149.0" layoutY="301.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#sendToProdutosView" prefHeight="35.0" prefWidth="901.0" style="-fx-background-color: #0589ff;" text="Entrar" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Hyperlink minWidth="500.0" onAction="#sendToCadastroView" text="Não tem conta? Crie sua conta">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Hyperlink>
+         </children>
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </padding>
+      </VBox>
+   </children>
+</HBox>

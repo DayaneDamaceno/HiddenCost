@@ -43,6 +43,6 @@ public class LoginController {
 
     @FXML
     protected void sendToCadastroView()  throws IOException {
-        MainApplication.setRoot("cadastro-view");
+        MainApplication.setRoot("novo-usuario-view");
     }
 }
