@@ -4,16 +4,16 @@ package br.edu.fesa.infra.models;
 public class Ingrediente {
     private Integer id;
     private String nome;
-    private double preso;
+    private double preco;
     private double peso;
 
     public Ingrediente() {
     }
 
-    public Ingrediente(Integer id, String nome, double preso, double peso) {
+    public Ingrediente(Integer id, String nome, double preco, double peso) {
         this.id = id;
         this.nome = nome;
-        this.preso = preso;
+        this.preco = preco;
         this.peso = peso;
     }
 
@@ -34,12 +34,12 @@ public class Ingrediente {
         this.nome = nome;
     }
 
-    public double getPreso() {
-        return preso;
+    public double getPreco() {
+        return preco;
     }
 
-    public void setPreso(double preso) {
-        this.preso = preso;
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 
     public double getPeso() {

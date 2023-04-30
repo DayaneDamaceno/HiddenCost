@@ -51,7 +51,7 @@ public class IngredienteDAO implements Dao<Ingrediente> {
 
             while (resultSet.next()) {
                 ingrediente.setNome(resultSet.getString("nome"));
-                ingrediente.setPreso(resultSet.getDouble("preco"));
+                ingrediente.setPreco(resultSet.getDouble("preco"));
                 ingrediente.setPeso(resultSet.getDouble("peso"));
             }
 
@@ -69,7 +69,7 @@ public class IngredienteDAO implements Dao<Ingrediente> {
             String query = "Insert into INGREDIENTES (nome, preco, peso) values (?,?,?)";
             PreparedStatement statement = databaseConnection.prepareStatement(query);
             statement.setString(1, ingrediente.getNome());
-            statement.setDouble(2, ingrediente.getPreso());
+            statement.setDouble(2, ingrediente.getPreco());
             statement.setDouble(3, ingrediente.getPeso());
             statement.execute();
 
@@ -84,7 +84,7 @@ public class IngredienteDAO implements Dao<Ingrediente> {
             String query = "UPDATE INGREDIENTES SET nome=?, preco=?, peso=? WHERE id_ingrediente = ?";
             PreparedStatement statement = databaseConnection.prepareStatement(query);
             statement.setString(1, ingrediente.getNome());
-            statement.setDouble(2, ingrediente.getPreso());
+            statement.setDouble(2, ingrediente.getPreco());
             statement.setDouble(3, ingrediente.getPeso());
             statement.setInt(4, ingrediente.getId());
             statement.execute();

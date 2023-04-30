@@ -94,7 +94,7 @@
             <Cursor fx:constant="HAND" />
          </cursor></Button>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-      <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: FFFFFF; -fx-background-color: FFFFFF;" GridPane.columnIndex="3" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="9" GridPane.valignment="CENTER">
+      <ScrollPane fx:id="listaIngredientes" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: FFFFFF; -fx-background-color: FFFFFF;" GridPane.columnIndex="3" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="9" GridPane.valignment="CENTER">
          <content>
             <VBox prefHeight="804.0" prefWidth="959.0" spacing="10.0" style="-fx-background-color: FFFFFF;">
                <children>
