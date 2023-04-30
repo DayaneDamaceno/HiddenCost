@@ -89,7 +89,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="149.0" layoutY="301.0" mnemonicParsing="false" style="-fx-background-color: #0589ff;" text="Cadastrar novo produto" textFill="WHITE" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+      <Button layoutX="149.0" layoutY="301.0" mnemonicParsing="false" onAction="#sendToNovoEquipamentoView" style="-fx-background-color: #0589ff;" text="Cadastrar novo equipamento" textFill="WHITE" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

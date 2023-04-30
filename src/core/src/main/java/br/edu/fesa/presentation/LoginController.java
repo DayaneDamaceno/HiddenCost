@@ -19,8 +19,10 @@ public class LoginController {
         UsuarioDAO usuarioDao = new UsuarioDAO();
 
         Usuario usuario = new Usuario();
-        usuario.setEmail(email.getText());
-        usuario.setSenha(senha.getText());
+//        usuario.setEmail(email.getText());
+//        usuario.setSenha(senha.getText());
+        usuario.setEmail("dayane@gmail.com");
+        usuario.setSenha("teste2");
         usuario = usuarioDao.buscar(usuario);
 
         if(usuario != null){
