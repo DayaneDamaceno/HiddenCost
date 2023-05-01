@@ -3,18 +3,14 @@ package br.edu.fesa.presentation;
 
 import br.edu.fesa.infra.dao.IngredienteDAO;
 import br.edu.fesa.infra.models.Ingrediente;
-import br.edu.fesa.infra.models.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,9 +26,18 @@ public class IngredientesController extends MenuController implements Initializa
     private TextField preco;
     @FXML
     private TextField peso;
-
     @FXML
     private ListView<Ingrediente> listView;
+    @FXML
+    private VBox detailContainer;
+    @FXML
+    private Label labelNome;
+    @FXML
+    private Label labelPreco;
+    @FXML
+    private Label labelPeso;
+    @FXML
+    private Button btnNovoIngrediente;
 
     private ObservableList<Ingrediente> ingredienteObservableList;
     private IngredienteDAO ingredienteDAO = new IngredienteDAO();
@@ -52,6 +57,28 @@ public class IngredientesController extends MenuController implements Initializa
         ingredienteDAO.salvar(ingrediente);
         MainApplication.setRoot("ingredientes-view");
 
+    }
+
+    @FXML
+    protected void onClickEditarButton()  throws IOException {
+        Ingrediente ingrediente = listView.getSelectionModel().getSelectedItem();
+        ingrediente.setNome(nome.getText());
+        ingrediente.setPreco(Double.parseDouble(preco.getText()));
+        ingrediente.setPeso(Double.parseDouble(peso.getText()));
+
+        ingredienteDAO.atualizar(ingrediente);
+        toggleDetail();
+        listView.refresh();
+        listView.getSelectionModel().clearSelection();
+    }
+
+    @FXML
+    protected void onClickExcluirButton()  throws IOException {
+        Ingrediente ingrediente = listView.getSelectionModel().getSelectedItem();
+        ingredienteDAO.deletar(ingrediente);
+        listView.getItems().remove(ingrediente);
+        toggleDetail();
+        listView.getSelectionModel().clearSelection();
     }
 
     @Override
@@ -88,7 +115,29 @@ public class IngredientesController extends MenuController implements Initializa
     @FXML
     protected void onClickItemListIngredientes(MouseEvent arg0) {
         Ingrediente ingredienteSelecionado = listView.getSelectionModel().getSelectedItem();
-        System.out.println(ingredienteSelecionado.getNome());
+        toggleDetail();
+
+        labelNome.setText(ingredienteSelecionado.getNome());
+        nome.setText(ingredienteSelecionado.getNome());
+        labelPeso.setText("Peso: " + ingredienteSelecionado.getPeso() + "g");
+        peso.setText(Double.toString(ingredienteSelecionado.getPeso()));
+
+        NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance();
+        labelPreco.setText(formatoMoeda.format(ingredienteSelecionado.getPreco()));
+        preco.setText(Double.toString(ingredienteSelecionado.getPreco()));
     }
+     protected void toggleDetail(){
+        if(detailContainer.isVisible()){
+            detailContainer.setVisible(false);
+            GridPane.setConstraints(listView, 3, 2, 9,9);
+            //columnIndex="10" columnSpan="2" GridPane.rowIndex="1"
+            GridPane.setConstraints(btnNovoIngrediente, 10, 1, 2,1);
+            return;
+        }
+         GridPane.setConstraints(listView, 3, 2, 4,9);
+         //columnIndex="5" columnSpan="2" GridPane.rowIndex="1"
+         GridPane.setConstraints(btnNovoIngrediente, 5, 1, 2,1);
+         detailContainer.setVisible(true);
+     }
 
 }
