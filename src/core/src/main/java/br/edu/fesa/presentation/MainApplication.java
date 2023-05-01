@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("log-in-view"));
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 

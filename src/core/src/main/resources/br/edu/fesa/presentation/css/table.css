@@ -1,0 +1,7 @@
+.list-cell:selected .label {
+    -fx-text-fill: #0E4AE4;
+}
+.list-cell:selected VBox {
+    -fx-border-color: #0E4AE4;
+    -fx-background-color: #e4f1ff;
+}
