@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="box" prefHeight="105.0" prefWidth="395.0" spacing="4.0" style="-fx-border-color: E6E6E7;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+   <children>
+      <Label fx:id="nome" text="Browni">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="peso" text="Peso: 10g" textFill="#868686">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label text="Preço unitario sugerido">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="preco" text="R$ 4,98" textFill="#009f53">
+         <font>
+            <Font name="Segoe UI Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</VBox>

@@ -130,12 +130,10 @@ public class IngredientesController extends MenuController implements Initializa
         if(detailContainer.isVisible()){
             detailContainer.setVisible(false);
             GridPane.setConstraints(listView, 3, 2, 9,9);
-            //columnIndex="10" columnSpan="2" GridPane.rowIndex="1"
             GridPane.setConstraints(btnNovoIngrediente, 10, 1, 2,1);
             return;
         }
          GridPane.setConstraints(listView, 3, 2, 4,9);
-         //columnIndex="5" columnSpan="2" GridPane.rowIndex="1"
          GridPane.setConstraints(btnNovoIngrediente, 5, 1, 2,1);
          detailContainer.setVisible(true);
      }

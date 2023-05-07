@@ -3,12 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
@@ -89,84 +92,126 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="149.0" layoutY="301.0" mnemonicParsing="false" onAction="#sendToNovoEquipamentoView" style="-fx-background-color: #0589ff;" text="Cadastrar novo equipamento" textFill="WHITE" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+      <Button fx:id="btnNovoEquipamento" layoutX="149.0" layoutY="301.0" mnemonicParsing="false" onAction="#sendToNovoEquipamentoView" style="-fx-background-color: #0589ff;" text="Cadastrar novo equipamento" textFill="WHITE" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-      <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: FFFFFF; -fx-background-color: FFFFFF;" GridPane.columnIndex="3" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="9" GridPane.valignment="CENTER">
-         <content>
-            <VBox prefHeight="804.0" prefWidth="959.0" spacing="10.0" style="-fx-background-color: FFFFFF;">
+      <ListView fx:id="listView" onMouseClicked="#onClickItemListIngredientes" prefHeight="200.0" prefWidth="762.0" style="-fx-background-color: FFFFFF; -fx-border-radius: 10px;" stylesheets="@css/table.css" GridPane.columnIndex="3" GridPane.columnSpan="9" GridPane.rowIndex="2" GridPane.rowSpan="9">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ListView>
+      <VBox fx:id="detailContainer" prefHeight="200.0" prefWidth="100.0" visible="false" GridPane.columnIndex="7" GridPane.columnSpan="5" GridPane.rowIndex="1" GridPane.rowSpan="10">
+         <children>
+            <HBox fillHeight="false" prefHeight="53.0" prefWidth="492.0">
                <children>
-                  <VBox prefHeight="80.0" prefWidth="100.0" spacing="4.0" style="-fx-border-color: E6E6E7;">
+                  <VBox prefHeight="58.0" prefWidth="214.0" HBox.hgrow="SOMETIMES">
                      <children>
-                        <Label text="Batedeira">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label text="Consumo médio">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="12.0">
+                           <children>
+                              <Label fx:id="labelNome" text="Nome">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Button mnemonicParsing="false" onAction="#onClickExcluirButton" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: DA0D00;" text="Excluir" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Label fx:id="labelMarca" text="Marca: Teste" textFill="#868686">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="0,48kWh" textFill="#0e4ae4">
-                           <font>
-                              <Font name="Segoe UI Bold" size="24.0" />
-                           </font>
-                        </Label>
                      </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="12.0" />
+                     </HBox.margin>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="80.0" prefWidth="100.0" spacing="4.0" style="-fx-border-color: E6E6E7;">
+                  <VBox alignment="TOP_RIGHT" prefHeight="58.0" prefWidth="177.0" HBox.hgrow="SOMETIMES">
                      <children>
-                        <Label text="Batedeira">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
                         <Label text="Consumo médio">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="0,48kWh" textFill="#0e4ae4">
+                        <Label fx:id="labelConsumoWatt" text="0,48kWh" textFill="#0e4ae4">
                            <font>
                               <Font name="Segoe UI Bold" size="24.0" />
                            </font>
                         </Label>
                      </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </VBox>
-                  <VBox layoutX="10.0" layoutY="125.0" prefHeight="80.0" prefWidth="100.0" spacing="4.0" style="-fx-border-color: E6E6E7;">
-                     <children>
-                        <Label text="Batedeira">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label text="Consumo médio">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label text="0,48kWh" textFill="#0e4ae4">
-                           <font>
-                              <Font name="Segoe UI Bold" size="24.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
                   </VBox>
                </children>
+            </HBox>
+            <Label layoutX="10.0" layoutY="10.0" text="Editar equipamento">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="14.0">
+               <children>
+                  <VBox prefHeight="56.0" prefWidth="358.0" spacing="2.0">
+                     <children>
+                        <Label text="Nome do produto">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nome" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="56.0" prefWidth="358.0" spacing="2.0">
+                     <children>
+                        <Label text="Marca">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="marca" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="56.0" prefWidth="358.0" spacing="2.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label text="Tipo de consumo">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="tipo" prefHeight="28.0" prefWidth="494.0" promptText="Selecione um tipo" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="58.0" prefWidth="358.0" spacing="6.0">
+                     <children>
+                        <Label text="Consumo médio mensal">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="consumoWatt" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
+                     </children>
+                  </VBox>
+                  <Button mnemonicParsing="false" onAction="#onClickEditarButton" prefHeight="29.0" prefWidth="135.0" style="-fx-background-color: #0589ff;" text="Salvar Alterações" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
             </VBox>
-         </content>
-      </ScrollPane>
+         </children>
+         <padding>
+            <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+         </padding>
+      </VBox>
    </children>
 </GridPane>

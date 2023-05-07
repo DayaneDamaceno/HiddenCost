@@ -4,8 +4,10 @@ package br.edu.fesa.presentation;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MenuController {
+public abstract class MenuController {
 
     @FXML
     private void sendToProdutosView() throws IOException {
@@ -21,6 +23,5 @@ public class MenuController {
     private void sendToEquipamentosView() throws IOException {
         MainApplication.setRoot("equipamentos-view");
     }
-
 
 }

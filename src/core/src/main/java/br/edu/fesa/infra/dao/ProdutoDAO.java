@@ -1,9 +1,9 @@
 package br.edu.fesa.infra.dao;
 
 import br.edu.fesa.infra.models.Equipamento;
-import br.edu.fesa.infra.models.Ingrediente;
 import br.edu.fesa.infra.models.Produto;
 import br.edu.fesa.infra.models.TipoEquipamento;
+import br.edu.fesa.infra.models.Usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,42 +14,46 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class IngredienteDAO implements Dao<Ingrediente> {
+public class ProdutoDAO implements Dao<Produto> {
 
     private Connection databaseConnection;
-
-    public IngredienteDAO() {
+    private Usuario usuarioLogado = new Usuario(1, "dayane", "day@gmail.com", "Dayane@08642ts");
+    public ProdutoDAO() {
         this.databaseConnection = DatabaseConnection.getConexao();
     }
 
     @Override
-    public List<Ingrediente> obterTodos() {
-        List<Ingrediente> ingredientes = new ArrayList<>();
-        String query = "SELECT * FROM INGREDIENTES";
+    public List<Produto> obterTodos() {
+
+        List<Produto> produtos = new ArrayList<>();
+        String query = "SELECT ID_PRODUTO, ID_USUARIO, NOME, PRECO_UNITARIO FROM PRODUTOS WHERE id_usuario = 1";
         try {
             PreparedStatement statement = databaseConnection.prepareStatement(query);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
-                ingredientes.add(
-                        new Ingrediente(
-                                result.getInt("ID_INGREDIENTE"),
+
+                produtos.add(
+                        new Produto(
+                                result.getInt("ID_PRODUTO"),
+                                usuarioLogado,
                                 result.getString("NOME"),
-                                result.getDouble("PRECO"),
-                                result.getDouble("PESO")
+                                result.getDouble("PRECO_UNITARIO")
                         ));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(IngredienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return ingredientes;
+        return produtos;
     }
 
     @Override
-    public Ingrediente buscar(Ingrediente ingrediente) {
+    public Produto buscar(Produto produto) {
         try {
-            String query = "SELECT * FROM INGREDIENTES where id_ingrediente = ?";
+            String query = "SELECT * FROM PRODUTOS where id_produto = ?";
             PreparedStatement statement = databaseConnection.prepareStatement(query);
-            statement.setInt(1, ingrediente.getId());
+
+            statement.setInt(1, produto.getId());
+
             ResultSet resultSet = statement.executeQuery();
 
             boolean isEmpty = !resultSet.isBeforeFirst();
@@ -59,12 +63,12 @@ public class IngredienteDAO implements Dao<Ingrediente> {
             }
 
             while (resultSet.next()) {
-                ingrediente.setNome(resultSet.getString("nome"));
-                ingrediente.setPreco(resultSet.getDouble("preco"));
-                ingrediente.setPeso(resultSet.getDouble("peso"));
+                produto.setNome(resultSet.getString("NOME"));
+                produto.setUsuario(usuarioLogado);
+                produto.setPrecoUnitario(resultSet.getDouble("PRECO_UNITARIO"));
             }
 
-            return ingrediente;
+            return produto;
 
         }catch (SQLException err){
             System.out.println("Erro na base de dados! " + err);
@@ -73,13 +77,13 @@ public class IngredienteDAO implements Dao<Ingrediente> {
     }
 
     @Override
-    public void salvar(Ingrediente ingrediente) {
+    public void salvar(Produto produto) {
         try {
-            String query = "Insert into INGREDIENTES (nome, preco, peso) values (?,?,?)";
+            String query = "Insert into PRODUTOS (id_usuario, nome, preco_unitario) values (?,?,?)";
             PreparedStatement statement = databaseConnection.prepareStatement(query);
-            statement.setString(1, ingrediente.getNome());
-            statement.setDouble(2, ingrediente.getPreco());
-            statement.setDouble(3, ingrediente.getPeso());
+            statement.setInt(1, produto.getUsuario().getId());
+            statement.setString(2, produto.getNome());
+            statement.setDouble(3, produto.getPrecoUnitario());
             statement.execute();
 
         }catch (SQLException err){
@@ -88,14 +92,14 @@ public class IngredienteDAO implements Dao<Ingrediente> {
     }
 
     @Override
-    public void atualizar(Ingrediente ingrediente) {
+    public void atualizar(Produto produto) {
         try {
-            String query = "UPDATE INGREDIENTES SET nome=?, preco=?, peso=? WHERE id_ingrediente = ?";
+            String query = "UPDATE PRODUTOS SET id_usuario=?, nome=?, preco_unitario=? WHERE id_produto = ?";
             PreparedStatement statement = databaseConnection.prepareStatement(query);
-            statement.setString(1, ingrediente.getNome());
-            statement.setDouble(2, ingrediente.getPreco());
-            statement.setDouble(3, ingrediente.getPeso());
-            statement.setInt(4, ingrediente.getId());
+            statement.setInt(1, produto.getUsuario().getId());
+            statement.setString(2, produto.getNome());
+            statement.setDouble(3, produto.getPrecoUnitario());
+            statement.setInt(4, produto.getId());
             statement.execute();
 
         }catch (SQLException err){
@@ -104,18 +108,17 @@ public class IngredienteDAO implements Dao<Ingrediente> {
     }
 
     @Override
-    public void deletar(Ingrediente ingrediente) {
-        String query = "DELETE FROM INGREDIENTES WHERE id_ingrediente = ?";
+    public void deletar(Produto produto) {
+        String query = "DELETE FROM PRODUTOS WHERE id_produto = ?";
 
         try {
             PreparedStatement statement = databaseConnection.prepareStatement(query);
-            statement.setInt(1, ingrediente.getId());
+            statement.setInt(1, produto.getId());
             statement.execute();
         } catch (SQLException err){
             System.out.println("Erro na base de dados! " + err);
         }
     }
-
 
 
 }

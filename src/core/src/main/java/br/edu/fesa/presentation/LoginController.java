@@ -1,12 +1,16 @@
 package br.edu.fesa.presentation;
 
 import br.edu.fesa.infra.dao.UsuarioDAO;
+import br.edu.fesa.infra.models.Produto;
+import br.edu.fesa.infra.models.TipoEquipamento;
 import br.edu.fesa.infra.models.Usuario;
+import br.edu.fesa.service.ProdutoService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.List;
 
 public class LoginController {
 
@@ -21,8 +25,8 @@ public class LoginController {
         Usuario usuario = new Usuario();
 //        usuario.setEmail(email.getText());
 //        usuario.setSenha(senha.getText());
-        usuario.setEmail("dayane@gmail.com");
-        usuario.setSenha("teste2");
+        usuario.setEmail("day@gmail.com");
+        usuario.setSenha("Dayane@08642ts");
         usuario = usuarioDao.buscar(usuario);
 
         if(usuario != null){
