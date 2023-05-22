@@ -7,7 +7,7 @@ public interface Dao<T> {
 
     T buscar(T t);
 
-    void salvar(T t);
+    T salvar(T t);
 
     void atualizar(T t);
 

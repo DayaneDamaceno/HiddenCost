@@ -47,7 +47,7 @@ public class ProdutoListViewCell extends ListCell<Produto> {
             }
 
             nome.setText(produto.getNome());
-//            nome.setText(produto.get());
+            peso.setText(produto.getPeso() + "g");
 
             NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance();
             preco.setText(formatoMoeda.format(produto.getPrecoUnitario()));

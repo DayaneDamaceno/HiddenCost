@@ -4,15 +4,19 @@ import br.edu.fesa.infra.dao.UsuarioDAO;
 import br.edu.fesa.infra.models.Produto;
 import br.edu.fesa.infra.models.TipoEquipamento;
 import br.edu.fesa.infra.models.Usuario;
+import br.edu.fesa.service.AuthService;
 import br.edu.fesa.service.ProdutoService;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
 
 public class LoginController {
+
 
     @FXML
     private TextField email;
@@ -31,6 +35,7 @@ public class LoginController {
 
         if(usuario != null){
             System.out.printf("%s é um usuario valido%n", usuario.getNome());
+            AuthService.usuarioLogado = usuario;
 //            MainApplication.setRoot("listagem-usuario");
             MainApplication.setRoot("produtos-view");
             return;

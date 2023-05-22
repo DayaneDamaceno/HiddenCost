@@ -1,14 +1,8 @@
 package br.edu.fesa.infra.dao;
 
-import br.edu.fesa.infra.models.Equipamento;
-import br.edu.fesa.infra.models.Ingrediente;
-import br.edu.fesa.infra.models.Produto;
-import br.edu.fesa.infra.models.TipoEquipamento;
+import br.edu.fesa.infra.models.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -34,6 +28,8 @@ public class IngredienteDAO implements Dao<Ingrediente> {
                         new Ingrediente(
                                 result.getInt("ID_INGREDIENTE"),
                                 result.getString("NOME"),
+                                UnidadeDeMedidaIngrediente.valueOf(
+                                        result.getString("UNIDADE_DE_MEDIDA")),
                                 result.getDouble("PRECO"),
                                 result.getDouble("PESO")
                         ));
@@ -73,17 +69,26 @@ public class IngredienteDAO implements Dao<Ingrediente> {
     }
 
     @Override
-    public void salvar(Ingrediente ingrediente) {
+    public Ingrediente salvar(Ingrediente ingrediente) {
         try {
-            String query = "Insert into INGREDIENTES (nome, preco, peso) values (?,?,?)";
-            PreparedStatement statement = databaseConnection.prepareStatement(query);
+            String query = "Insert into INGREDIENTES (nome, preco, peso, unidade_de_medida) values (?,?,?,?)";
+            PreparedStatement statement = databaseConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, ingrediente.getNome());
             statement.setDouble(2, ingrediente.getPreco());
             statement.setDouble(3, ingrediente.getPeso());
+            statement.setString(4, ingrediente.getUnidadeDeMedida().toString());
             statement.execute();
+
+            ResultSet rs = statement.getGeneratedKeys();
+            if(rs.next()){
+                ingrediente.setId(rs.getInt(1));
+            }
+
+            return ingrediente;
 
         }catch (SQLException err){
             System.out.println("Erro na base de dados! " + err);
+            return null;
         }
     }
 

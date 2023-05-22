@@ -7,30 +7,33 @@ public class Produto {
     private Integer id;
     private Usuario usuario;
     private String nome;
+    private double peso;
     private double precoUnitario;
-    private List<Ingrediente> ingredientes;
-    private List<Equipamento> equipamentos;
+    private List<ProdutoXIngrediente> ingredientes;
+    private List<ProdutoXEquipamento> equipamentos;
 
 
     public Produto() {
     }
 
-    public Produto(Integer id, Usuario usuario, String nome, double precoUnitario) {
+    public Produto(Integer id, Usuario usuario, String nome, double precoUnitario,double peso, List<ProdutoXIngrediente> ingredientes, List<ProdutoXEquipamento> equipamentos) {
         this.id = id;
         this.usuario = usuario;
         this.nome = nome;
         this.precoUnitario = precoUnitario;
-    }
-
-
-    public Produto(Integer id, Usuario usuario, String nome, double precoUnitario, List<Ingrediente> ingredientes, List<Equipamento> equipamentos) {
-        this.id = id;
-        this.usuario = usuario;
-        this.nome = nome;
-        this.precoUnitario = precoUnitario;
+        this.peso = peso;
         this.ingredientes = ingredientes;
         this.equipamentos = equipamentos;
     }
+
+    public Produto(Integer id, Usuario usuario, String nome, double peso, double precoUnitario) {
+        this.id = id;
+        this.usuario = usuario;
+        this.nome = nome;
+        this.peso = peso;
+        this.precoUnitario = precoUnitario;
+    }
+
 
     public Integer getId() {
         return id;
@@ -56,6 +59,14 @@ public class Produto {
         this.nome = nome;
     }
 
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
     public double getPrecoUnitario() {
         return precoUnitario;
     }
@@ -64,19 +75,19 @@ public class Produto {
         this.precoUnitario = precoUnitario;
     }
 
-    public List<Ingrediente> getIngredientes() {
+    public List<ProdutoXIngrediente> getIngredientes() {
         return ingredientes;
     }
 
-    public void setIngredientes(List<Ingrediente> ingredientes) {
+    public void setIngredientes(List<ProdutoXIngrediente> ingredientes) {
         this.ingredientes = ingredientes;
     }
 
-    public List<Equipamento> getEquipamentos() {
+    public List<ProdutoXEquipamento> getEquipamentos() {
         return equipamentos;
     }
 
-    public void setEquipamentos(List<Equipamento> equipamentos) {
+    public void setEquipamentos(List<ProdutoXEquipamento> equipamentos) {
         this.equipamentos = equipamentos;
     }
 }

@@ -3,6 +3,8 @@ package br.edu.fesa.presentation;
 
 import br.edu.fesa.infra.dao.IngredienteDAO;
 import br.edu.fesa.infra.models.Ingrediente;
+import br.edu.fesa.infra.models.TipoEquipamento;
+import br.edu.fesa.infra.models.UnidadeDeMedidaIngrediente;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,13 +22,19 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
-public class IngredientesController extends MenuController implements Initializable {
+public class IngredientesController extends MenuController implements Initializable  {
+
+
     @FXML
     private TextField nome;
     @FXML
     private TextField preco;
     @FXML
     private TextField peso;
+    @FXML
+    private Label labelMedida;
+    @FXML
+    private ComboBox unidadesDeMedida;
     @FXML
     private ListView<Ingrediente> listView;
     @FXML
@@ -40,6 +49,8 @@ public class IngredientesController extends MenuController implements Initializa
     private Button btnNovoIngrediente;
 
     private ObservableList<Ingrediente> ingredienteObservableList;
+
+    private ObservableList<UnidadeDeMedidaIngrediente> unidadesDeMedidaOptions;
     private IngredienteDAO ingredienteDAO = new IngredienteDAO();
 
     @FXML
@@ -51,6 +62,7 @@ public class IngredientesController extends MenuController implements Initializa
     protected void onClickEnviarButton()  throws IOException {
         Ingrediente ingrediente = new Ingrediente();
         ingrediente.setNome(nome.getText());
+        ingrediente.setUnidadeDeMedida(UnidadeDeMedidaIngrediente.valueOf(unidadesDeMedida.getSelectionModel().getSelectedItem().toString()));
         ingrediente.setPreco(Double.parseDouble(preco.getText()));
         ingrediente.setPeso(Double.parseDouble(peso.getText()));
 
@@ -63,6 +75,7 @@ public class IngredientesController extends MenuController implements Initializa
     protected void onClickEditarButton()  throws IOException {
         Ingrediente ingrediente = listView.getSelectionModel().getSelectedItem();
         ingrediente.setNome(nome.getText());
+        ingrediente.setUnidadeDeMedida(UnidadeDeMedidaIngrediente.valueOf(unidadesDeMedida.getSelectionModel().getSelectedItem().toString()));
         ingrediente.setPreco(Double.parseDouble(preco.getText()));
         ingrediente.setPeso(Double.parseDouble(peso.getText()));
 
@@ -95,6 +108,18 @@ public class IngredientesController extends MenuController implements Initializa
         if(peso != null)
             peso.setTextFormatter(new TextFormatter<>(validaNumeroDecimalOuInteiro()));
 
+        if(unidadesDeMedida != null){
+            unidadesDeMedidaOptions = FXCollections.observableArrayList();
+            unidadesDeMedidaOptions.addAll(UnidadeDeMedidaIngrediente.values());
+            unidadesDeMedida.setItems(unidadesDeMedidaOptions);
+        }
+        if(unidadesDeMedida != null){
+            unidadesDeMedida.getSelectionModel().selectedItemProperty().addListener((observableValue, ingrediente, itemSelecionado) -> {
+                if(itemSelecionado != null){
+                    labelMedida.setText("Medida em " + itemSelecionado.toString().toLowerCase());
+                }
+            });
+        }
     }
 
     private static UnaryOperator<TextFormatter.Change> validaNumeroDecimalOuInteiro() {
@@ -121,7 +146,8 @@ public class IngredientesController extends MenuController implements Initializa
         nome.setText(ingredienteSelecionado.getNome());
         labelPeso.setText("Peso: " + ingredienteSelecionado.getPeso() + "g");
         peso.setText(Double.toString(ingredienteSelecionado.getPeso()));
-
+        unidadesDeMedida.getSelectionModel().select(ingredienteSelecionado.getUnidadeDeMedida());
+        labelMedida.setText("Medida em " + ingredienteSelecionado.getUnidadeDeMedida().toString().toLowerCase());
         NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance();
         labelPreco.setText(formatoMoeda.format(ingredienteSelecionado.getPreco()));
         preco.setText(Double.toString(ingredienteSelecionado.getPreco()));

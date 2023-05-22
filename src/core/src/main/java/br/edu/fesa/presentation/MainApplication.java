@@ -16,8 +16,10 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("log-in-view"));
         stage.setScene(scene);
+        stage.setTitle("Login");
         stage.setMaximized(true);
         stage.show();
+        AppContext.stage = stage;
     }
 
     static void setRoot(String fxml) throws IOException {

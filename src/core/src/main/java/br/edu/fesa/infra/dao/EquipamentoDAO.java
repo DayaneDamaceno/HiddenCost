@@ -4,10 +4,7 @@ import br.edu.fesa.infra.models.Equipamento;
 import br.edu.fesa.infra.models.Produto;
 import br.edu.fesa.infra.models.TipoEquipamento;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -76,18 +73,26 @@ public class EquipamentoDAO implements Dao<Equipamento> {
     }
 
     @Override
-    public void salvar(Equipamento equipamento) {
+    public Equipamento salvar(Equipamento equipamento) {
         try {
             String query = "Insert into EQUIPAMENTOS (nome, tipo, marca, consumoWatt) values (?,?,?,?)";
-            PreparedStatement statement = databaseConnection.prepareStatement(query);
+            PreparedStatement statement = databaseConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, equipamento.getNome());
             statement.setString(2, equipamento.getTipo().toString());
             statement.setString(3, equipamento.getMarca());
             statement.setDouble(4, equipamento.getConsumoWatt());
             statement.execute();
 
+            ResultSet rs = statement.getGeneratedKeys();
+            if(rs.next()){
+                equipamento.setId(rs.getInt(1));
+            }
+
+            return equipamento;
+
         }catch (SQLException err){
             System.out.println("Erro na base de dados! " + err);
+            return null;
         }
     }
 

@@ -2,10 +2,7 @@ package br.edu.fesa.infra.dao;
 
 import br.edu.fesa.infra.models.Usuario;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -51,6 +48,7 @@ public class UsuarioDAO implements Dao<Usuario> {
             }
 
             while (resultSet.next()) {
+                usuario.setId(resultSet.getInt("ID_USUARIO"));
                 usuario.setNome(resultSet.getString("nome"));
             }
 
@@ -63,17 +61,25 @@ public class UsuarioDAO implements Dao<Usuario> {
     }
 
     @Override
-    public void salvar(Usuario usuario) {
+    public Usuario salvar(Usuario usuario) {
         try {
             String query = "Insert into USUARIOS (nome, email, senha) values (?,?,?)";
-            PreparedStatement statement = databaseConnection.prepareStatement(query);
+            PreparedStatement statement = databaseConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, usuario.getNome());
             statement.setString(2, usuario.getEmail());
             statement.setString(3, usuario.getSenha());
             statement.execute();
 
+            ResultSet rs = statement.getGeneratedKeys();
+            if(rs.next()){
+                usuario.setId(rs.getInt(1));
+            }
+
+            return usuario;
+
         }catch (SQLException err){
             System.out.println("Erro na base de dados! " + err);
+            return null;
         }
     }
 
