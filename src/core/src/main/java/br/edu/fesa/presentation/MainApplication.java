@@ -4,10 +4,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainApplication extends Application {
 
@@ -17,6 +19,9 @@ public class MainApplication extends Application {
         scene = new Scene(loadFXML("log-in-view"));
         stage.setScene(scene);
         stage.setTitle("Login");
+        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/br/edu/fesa/presentation/images/Logo.jpg")));
+
+        stage.getIcons().add(icon);
         stage.setMaximized(true);
         stage.show();
         AppContext.stage = stage;

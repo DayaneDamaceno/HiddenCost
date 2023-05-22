@@ -80,6 +80,14 @@
                        <Cursor fx:constant="HAND" />
                    </cursor>
                </Button>
+            <Button graphicTextGap="9.0" mnemonicParsing="false" onAction="#sendToLoginView" style="-fx-background-color: F3F5F9;" text="Sair" textFill="#737784">
+               <graphic>
+                  <SVGPath content="M10.5 2.99995L9.513 3.98695L11.319 5.79995H4.2V7.19995H11.319L9.513 9.00595L10.5 9.99995L14 6.49995L10.5 2.99995ZM1.4 1.59995H7V0.199951H1.4C0.63 0.199951 0 0.829951 0 1.59995V11.4C0 12.17 0.63 12.8 1.4 12.8H7V11.4H1.4V1.59995Z" fill="#737784" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
            </children>
            <padding>
                <Insets bottom="26.0" left="26.0" right="26.0" top="26.0" />

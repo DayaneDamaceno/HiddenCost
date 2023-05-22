@@ -81,7 +81,7 @@
                <font>
                   <Font size="16.0" />
                </font></PasswordField>
-            <Button alignment="CENTER" layoutX="149.0" layoutY="301.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#sendToProdutosView" prefHeight="35.0" prefWidth="901.0" style="-fx-background-color: #0589ff;" text="Entrar" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
+            <Button alignment="CENTER" layoutX="149.0" layoutY="301.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#Login" prefHeight="35.0" prefWidth="901.0" style="-fx-background-color: #0589ff;" text="Entrar" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="16.0" />
                </font>

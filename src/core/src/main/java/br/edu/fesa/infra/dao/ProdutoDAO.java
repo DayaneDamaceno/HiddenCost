@@ -1,10 +1,7 @@
 package br.edu.fesa.infra.dao;
 
-import br.edu.fesa.infra.models.Equipamento;
 import br.edu.fesa.infra.models.Produto;
-import br.edu.fesa.infra.models.TipoEquipamento;
-import br.edu.fesa.infra.models.Usuario;
-import br.edu.fesa.service.AuthService;
+import br.edu.fesa.presentation.AppContext;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -26,14 +23,14 @@ public class ProdutoDAO implements Dao<Produto> {
         String query = "SELECT * FROM PRODUTOS WHERE id_usuario = ?";
         try {
             PreparedStatement statement = databaseConnection.prepareStatement(query);
-            statement.setInt(1, AuthService.usuarioLogado.getId());
+            statement.setInt(1, AppContext.usuarioLogado.getId());
             ResultSet result = statement.executeQuery();
             while (result.next()) {
 
                 produtos.add(
                         new Produto(
                                 result.getInt("ID_PRODUTO"),
-                                AuthService.usuarioLogado,
+                                AppContext.usuarioLogado,
                                 result.getString("NOME"),
                                 result.getDouble("PESO"),
                                 result.getDouble("PRECO_UNITARIO")
@@ -63,7 +60,7 @@ public class ProdutoDAO implements Dao<Produto> {
 
             while (resultSet.next()) {
                 produto.setNome(resultSet.getString("NOME"));
-                produto.setUsuario(AuthService.usuarioLogado);
+                produto.setUsuario(AppContext.usuarioLogado);
                 produto.setPrecoUnitario(resultSet.getDouble("PRECO_UNITARIO"));
                 produto.setPeso(resultSet.getDouble("PESO"));
             }
@@ -81,7 +78,7 @@ public class ProdutoDAO implements Dao<Produto> {
         try {
             String query = "Insert into PRODUTOS (id_usuario, nome, peso, preco_unitario) values (?,?,?,?)";
             PreparedStatement statement = databaseConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, AuthService.usuarioLogado.getId());
+            statement.setInt(1, AppContext.usuarioLogado.getId());
             statement.setString(2, produto.getNome());
             statement.setDouble(3, produto.getPeso());
             statement.setDouble(4, produto.getPrecoUnitario());

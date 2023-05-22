@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 public abstract class MenuController {
 
     @FXML
-    private void sendToProdutosView() throws IOException {
+    void sendToProdutosView() throws IOException {
         AppContext.stage.setTitle("Produtos");
         MainApplication.setRoot("produtos-view");
     }
@@ -25,6 +25,13 @@ public abstract class MenuController {
     private void sendToEquipamentosView() throws IOException {
         AppContext.stage.setTitle("Equipamentos");
         MainApplication.setRoot("equipamentos-view");
+    }
+
+    @FXML
+    private void sendToLoginView() throws IOException {
+        AppContext.stage.setTitle("Login");
+        AppContext.usuarioLogado = null;
+        MainApplication.setRoot("log-in-view");
     }
 
 }
