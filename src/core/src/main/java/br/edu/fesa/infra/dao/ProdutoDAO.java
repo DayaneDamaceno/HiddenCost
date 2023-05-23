@@ -1,5 +1,6 @@
 package br.edu.fesa.infra.dao;
 
+import br.edu.fesa.infra.models.Equipamento;
 import br.edu.fesa.infra.models.Produto;
 import br.edu.fesa.presentation.AppContext;
 

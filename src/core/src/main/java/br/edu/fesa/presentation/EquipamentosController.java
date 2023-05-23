@@ -2,8 +2,10 @@ package br.edu.fesa.presentation;
 
 
 import br.edu.fesa.infra.dao.EquipamentoDAO;
+import br.edu.fesa.infra.dao.ProdutoXEquipamentoDAO;
 import br.edu.fesa.infra.models.Equipamento;
 import br.edu.fesa.infra.models.TipoEquipamento;
+import br.edu.fesa.service.ProdutoService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -43,6 +45,8 @@ public class EquipamentosController extends MenuController implements Initializa
     private ObservableList<Equipamento> equipamentosObservableList;
     private ObservableList<TipoEquipamento> tiposEquipamentoObservableList;
     private EquipamentoDAO equipamentoDAO = new EquipamentoDAO();
+    private ProdutoXEquipamentoDAO produtoXEquipamentoDAO = new ProdutoXEquipamentoDAO();
+    private ProdutoService produtoService = new ProdutoService();
 
 
     @FXML
@@ -69,6 +73,7 @@ public class EquipamentosController extends MenuController implements Initializa
         equipamento.setMarca(marca.getText());
 
         equipamentoDAO.atualizar(equipamento);
+        produtoService.recalcularPrecoUnitarioQuandoEquipamentoMudar(equipamento);
         toggleDetail();
         listView.refresh();
         listView.getSelectionModel().clearSelection();
@@ -78,6 +83,7 @@ public class EquipamentosController extends MenuController implements Initializa
     protected void onClickExcluirButton()  throws IOException {
         Equipamento equipamento = listView.getSelectionModel().getSelectedItem();
         equipamentoDAO.deletar(equipamento);
+        produtoService.recalcularTodos();
         listView.getItems().remove(equipamento);
         toggleDetail();
         listView.getSelectionModel().clearSelection();

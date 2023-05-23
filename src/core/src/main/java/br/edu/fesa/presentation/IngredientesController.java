@@ -5,6 +5,7 @@ import br.edu.fesa.infra.dao.IngredienteDAO;
 import br.edu.fesa.infra.models.Ingrediente;
 import br.edu.fesa.infra.models.TipoEquipamento;
 import br.edu.fesa.infra.models.UnidadeDeMedidaIngrediente;
+import br.edu.fesa.service.ProdutoService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -50,6 +51,7 @@ public class IngredientesController extends MenuController implements Initializa
     private ObservableList<Ingrediente> ingredienteObservableList;
     private ObservableList<UnidadeDeMedidaIngrediente> unidadesDeMedidaOptions;
     private IngredienteDAO ingredienteDAO = new IngredienteDAO();
+    private ProdutoService produtoService = new ProdutoService();
 
     @FXML
     private void sendToNovoIngredienteView() throws IOException {
@@ -78,6 +80,7 @@ public class IngredientesController extends MenuController implements Initializa
         ingrediente.setPeso(Double.parseDouble(peso.getText()));
 
         ingredienteDAO.atualizar(ingrediente);
+        produtoService.recalcularPrecoUnitarioQuandoIngredienteMudar(ingrediente);
         toggleDetail();
         listView.refresh();
         listView.getSelectionModel().clearSelection();
@@ -87,6 +90,7 @@ public class IngredientesController extends MenuController implements Initializa
     protected void onClickExcluirButton()  throws IOException {
         Ingrediente ingrediente = listView.getSelectionModel().getSelectedItem();
         ingredienteDAO.deletar(ingrediente);
+        produtoService.recalcularTodos();
         listView.getItems().remove(ingrediente);
         toggleDetail();
         listView.getSelectionModel().clearSelection();

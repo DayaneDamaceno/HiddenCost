@@ -76,6 +76,14 @@ drop table INGREDIENTES;
 drop table EQUIPAMENTOS;
 drop table USUARIOS;
 
+Select * from EQUIPAMENTOS
+
+select P.*, PE.id_produto_equipamento, PE.tempo_de_uso
+from PRODUTOS P
+         inner join PRODUTOS_EQUIPAMENTOS PE
+                    on P.id_produto = PE.id_produto
+where PE.id_equipamento = 2;
+
 
 
 

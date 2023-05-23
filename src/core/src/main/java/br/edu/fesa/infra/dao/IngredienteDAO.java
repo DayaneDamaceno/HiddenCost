@@ -103,6 +103,7 @@ public class IngredienteDAO implements Dao<Ingrediente> {
 
     @Override
     public void atualizar(Ingrediente ingrediente) {
+        ingrediente.setCustoUnitario(ingrediente.getPreco() / ingrediente.getPeso());
         try {
             String query = "UPDATE INGREDIENTES SET nome=?, preco=?, peso=?, custo_unitario=? WHERE id_ingrediente = ?";
             PreparedStatement statement = databaseConnection.prepareStatement(query);

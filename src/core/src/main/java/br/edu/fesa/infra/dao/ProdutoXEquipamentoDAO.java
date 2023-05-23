@@ -1,6 +1,7 @@
 package br.edu.fesa.infra.dao;
 
 import br.edu.fesa.infra.models.*;
+import br.edu.fesa.presentation.AppContext;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -85,5 +86,34 @@ public class ProdutoXEquipamentoDAO {
             Logger.getLogger(EquipamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return equipamentos;
+    }
+
+    public List<Produto> obterProdutosQueUsamUmEquipamento(Equipamento equipamento){
+        List<Produto> produtos = new ArrayList<>();
+        String query = """
+                select P.*, PE.id_produto_equipamento, PE.tempo_de_uso
+                from PRODUTOS P
+                         inner join PRODUTOS_EQUIPAMENTOS PE
+                                    on P.id_produto = PE.id_produto
+                where PE.id_equipamento = ?;""";
+        try {
+            PreparedStatement statement = databaseConnection.prepareStatement(query);
+            statement.setInt(1, equipamento.getId());
+
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                Produto produto = new Produto(
+                        result.getInt("ID_PRODUTO"),
+                        AppContext.usuarioLogado,
+                        result.getString("NOME"),
+                        result.getDouble("PESO"),
+                        result.getDouble("PRECO_UNITARIO"));
+
+                produtos.add(produto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EquipamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return produtos;
     }
 }

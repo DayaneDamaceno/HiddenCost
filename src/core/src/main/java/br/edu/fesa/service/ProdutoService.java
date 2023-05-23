@@ -82,4 +82,28 @@ public class ProdutoService {
             produtoXEquipamentoDAO.atualizar(produto, equipamento);
         }
     }
+
+    public void recalcularPrecoUnitarioQuandoEquipamentoMudar(Equipamento equipamento){
+        List<Produto> produtos = produtoXEquipamentoDAO.obterProdutosQueUsamUmEquipamento(equipamento);
+        for (Produto produto: produtos) {
+            produto.setIngredientes(produtoXIngredienteDAO.obterIngredientesDeUmProduto(produto));
+            produto.setEquipamentos(produtoXEquipamentoDAO.obterEquipamentosDeUmProduto(produto));
+            editarProduto(produto);
+        }
+    }
+    public void recalcularPrecoUnitarioQuandoIngredienteMudar(Ingrediente ingrediente){
+        List<Produto> produtos = produtoXIngredienteDAO.obterProdutosQueUsamUmIngrediente(ingrediente);
+        for (Produto produto: produtos) {
+            produto.setIngredientes(produtoXIngredienteDAO.obterIngredientesDeUmProduto(produto));
+            produto.setEquipamentos(produtoXEquipamentoDAO.obterEquipamentosDeUmProduto(produto));
+            editarProduto(produto);
+        }
+    }
+
+    public void recalcularTodos(){
+        List<Produto> produtos = obterTodosProdutos();
+        for (Produto produto: produtos) {
+            editarProduto(produto);
+        }
+    }
 }

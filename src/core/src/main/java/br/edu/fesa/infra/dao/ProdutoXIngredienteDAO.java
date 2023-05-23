@@ -92,4 +92,33 @@ public class ProdutoXIngredienteDAO {
         }
         return ingredientes;
     }
+
+    public List<Produto> obterProdutosQueUsamUmIngrediente(Ingrediente ingrediente){
+        List<Produto> produtos = new ArrayList<>();
+        String query = """
+                select P.*, PI.id_produto_ingrediente, PI.medida
+                from PRODUTOS P
+                         inner join PRODUTOS_INGREDIENTES PI
+                                    on P.id_produto = PI.id_produto
+                where PI.id_ingrediente = ?;""";
+        try {
+            PreparedStatement statement = databaseConnection.prepareStatement(query);
+            statement.setInt(1, ingrediente.getId());
+
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                Produto produto = new Produto(
+                        result.getInt("ID_PRODUTO"),
+                        AppContext.usuarioLogado,
+                        result.getString("NOME"),
+                        result.getDouble("PESO"),
+                        result.getDouble("PRECO_UNITARIO"));
+
+                produtos.add(produto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EquipamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return produtos;
+    }
 }
