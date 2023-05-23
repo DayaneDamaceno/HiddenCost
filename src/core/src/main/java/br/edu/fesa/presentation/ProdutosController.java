@@ -90,8 +90,8 @@ public class ProdutosController extends MenuController implements Initializable 
         Produto produto = new Produto();
         produto.setNome(nome.getText());
         produto.setPeso(Double.parseDouble(peso.getText()));
-        produto.setIngredientes(ingredientesSelecionados);
-        produto.setEquipamentos(equipamentosSelecionados);
+        produto.setIngredientes(ingredientesSelecionados.stream().toList());
+        produto.setEquipamentos(equipamentosSelecionados.stream().toList());
 
         produtoService.salvarProduto(produto);
         MainApplication.setRoot("produtos-view");
@@ -300,7 +300,7 @@ public class ProdutosController extends MenuController implements Initializable 
         peso.setText(Double.toString(produtoSelecionado.getPeso()));
 
         NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance();
-        lbPreco.setText(formatoMoeda.format(10.99));
+        lbPreco.setText(formatoMoeda.format(produtoSelecionado.getPrecoUnitario()));
     }
     @FXML
     protected void onClickAddIngrediente() {

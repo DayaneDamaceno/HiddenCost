@@ -131,16 +131,6 @@
                   <ComboBox fx:id="tipo" prefHeight="28.0" prefWidth="359.0" promptText="Selecione um tipo" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
                </children>
             </VBox>
-            <VBox prefHeight="58.0" prefWidth="358.0" spacing="6.0">
-               <children>
-                  <Label text="Consumo médio mensal">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="consumoWatt" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
-               </children>
-            </VBox>
             <Button mnemonicParsing="false" onAction="#onClickEnviarButton" prefWidth="61.0" style="-fx-background-color: #0589ff;" text="Salvar" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />

@@ -31,7 +31,8 @@ public class IngredienteDAO implements Dao<Ingrediente> {
                                 UnidadeDeMedidaIngrediente.valueOf(
                                         result.getString("UNIDADE_DE_MEDIDA")),
                                 result.getDouble("PRECO"),
-                                result.getDouble("PESO")
+                                result.getDouble("PESO"),
+                                result.getDouble("CUSTO_UNITARIO")
                         ));
             }
         } catch (SQLException ex) {
@@ -71,12 +72,15 @@ public class IngredienteDAO implements Dao<Ingrediente> {
     @Override
     public Ingrediente salvar(Ingrediente ingrediente) {
         try {
-            String query = "Insert into INGREDIENTES (nome, preco, peso, unidade_de_medida) values (?,?,?,?)";
+            ingrediente.setCustoUnitario(ingrediente.getPreco() / ingrediente.getPeso());
+
+            String query = "Insert into INGREDIENTES (nome, preco, peso, unidade_de_medida, custo_unitario) values (?,?,?,?,?)";
             PreparedStatement statement = databaseConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, ingrediente.getNome());
             statement.setDouble(2, ingrediente.getPreco());
             statement.setDouble(3, ingrediente.getPeso());
             statement.setString(4, ingrediente.getUnidadeDeMedida().toString());
+            statement.setDouble(5, ingrediente.getCustoUnitario());
             statement.execute();
 
             ResultSet rs = statement.getGeneratedKeys();
@@ -95,12 +99,13 @@ public class IngredienteDAO implements Dao<Ingrediente> {
     @Override
     public void atualizar(Ingrediente ingrediente) {
         try {
-            String query = "UPDATE INGREDIENTES SET nome=?, preco=?, peso=? WHERE id_ingrediente = ?";
+            String query = "UPDATE INGREDIENTES SET nome=?, preco=?, peso=?, custo_unitario=? WHERE id_ingrediente = ?";
             PreparedStatement statement = databaseConnection.prepareStatement(query);
             statement.setString(1, ingrediente.getNome());
             statement.setDouble(2, ingrediente.getPreco());
             statement.setDouble(3, ingrediente.getPeso());
-            statement.setInt(4, ingrediente.getId());
+            statement.setDouble(4, ingrediente.getCustoUnitario());
+            statement.setInt(5, ingrediente.getId());
             statement.execute();
 
         }catch (SQLException err){

@@ -5,21 +5,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="box" prefHeight="105.0" prefWidth="306.0" spacing="4.0" style="-fx-border-color: E6E6E7;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="box" prefHeight="68.0" prefWidth="306.0" spacing="4.0" style="-fx-border-color: E6E6E7;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="nome" text="Batedeira">
+      <Label fx:id="nome" text="Nome">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label text="Tipo do equipamento">
+      <Label fx:id="email" text="email">
          <font>
             <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="tipo" text="Eletrico" textFill="#0e4ae4">
-         <font>
-            <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
    </children>

@@ -31,8 +31,7 @@ public class EquipamentoDAO implements Dao<Equipamento> {
                                 result.getInt("ID_EQUIPAMENTO"),
                                 result.getString("NOME"),
                                 TipoEquipamento.valueOf(result.getString("TIPO")),
-                                result.getString("MARCA"),
-                                result.getDouble("CONSUMOWATT")
+                                result.getString("MARCA")
                         ));
             }
         } catch (SQLException ex) {
@@ -60,7 +59,6 @@ public class EquipamentoDAO implements Dao<Equipamento> {
             while (resultSet.next()) {
                 equipamento.setMarca(resultSet.getString("NOME"));
                 equipamento.setMarca(resultSet.getString("MARCA"));
-                equipamento.setConsumoWatt(resultSet.getDouble("CONSUMOWATT"));
                 equipamento.setTipo(TipoEquipamento.valueOf(resultSet.getString("TIPO")));
             }
 
@@ -75,12 +73,11 @@ public class EquipamentoDAO implements Dao<Equipamento> {
     @Override
     public Equipamento salvar(Equipamento equipamento) {
         try {
-            String query = "Insert into EQUIPAMENTOS (nome, tipo, marca, consumoWatt) values (?,?,?,?)";
+            String query = "Insert into EQUIPAMENTOS (nome, tipo, marca) values (?,?,?)";
             PreparedStatement statement = databaseConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, equipamento.getNome());
             statement.setString(2, equipamento.getTipo().toString());
             statement.setString(3, equipamento.getMarca());
-            statement.setDouble(4, equipamento.getConsumoWatt());
             statement.execute();
 
             ResultSet rs = statement.getGeneratedKeys();
@@ -99,13 +96,12 @@ public class EquipamentoDAO implements Dao<Equipamento> {
     @Override
     public void atualizar(Equipamento equipamento) {
         try {
-            String query = "UPDATE EQUIPAMENTOS SET marca=?, tipo=?, consumoWatt=?, nome=? WHERE id_Equipamento = ?";
+            String query = "UPDATE EQUIPAMENTOS SET marca=?, tipo=?, nome=? WHERE id_Equipamento = ?";
             PreparedStatement statement = databaseConnection.prepareStatement(query);
             statement.setString(1, equipamento.getMarca());
             statement.setString(2, equipamento.getTipo().toString());
-            statement.setDouble(3, equipamento.getConsumoWatt());
-            statement.setString(4, equipamento.getNome());
-            statement.setInt(5, equipamento.getId());
+            statement.setString(3, equipamento.getNome());
+            statement.setInt(4, equipamento.getId());
             statement.execute();
 
         }catch (SQLException err){

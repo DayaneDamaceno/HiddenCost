@@ -47,9 +47,7 @@ public class IngredientesController extends MenuController implements Initializa
     private Label labelPeso;
     @FXML
     private Button btnNovoIngrediente;
-
     private ObservableList<Ingrediente> ingredienteObservableList;
-
     private ObservableList<UnidadeDeMedidaIngrediente> unidadesDeMedidaOptions;
     private IngredienteDAO ingredienteDAO = new IngredienteDAO();
 

@@ -145,12 +145,12 @@
                   </VBox>
                   <VBox alignment="TOP_RIGHT" prefHeight="58.0" prefWidth="177.0" HBox.hgrow="SOMETIMES">
                      <children>
-                        <Label text="Consumo médio">
+                        <Label text="Tipo">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelConsumoWatt" text="0,48kWh" textFill="#0e4ae4">
+                        <Label fx:id="labelTipo" text="Utensilios" textFill="#0e4ae4">
                            <font>
                               <Font name="Segoe UI Bold" size="24.0" />
                            </font>
@@ -194,16 +194,6 @@
                            </font>
                         </Label>
                         <ComboBox fx:id="tipo" prefHeight="28.0" prefWidth="494.0" promptText="Selecione um tipo" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" VBox.vgrow="ALWAYS" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="58.0" prefWidth="358.0" spacing="6.0">
-                     <children>
-                        <Label text="Consumo médio mensal">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="consumoWatt" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
                      </children>
                   </VBox>
                   <Button mnemonicParsing="false" onAction="#onClickEditarButton" prefHeight="29.0" prefWidth="135.0" style="-fx-background-color: #0589ff;" text="Salvar Alterações" textFill="WHITE">

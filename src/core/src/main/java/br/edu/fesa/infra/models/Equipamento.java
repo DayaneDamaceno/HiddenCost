@@ -6,7 +6,6 @@ public class Equipamento {
     private TipoEquipamento tipo;
     private String marca;
     private String nome;
-    private double consumoWatt;
 
 
     public Equipamento() {
@@ -19,13 +18,7 @@ public class Equipamento {
         this.nome = nome;
     }
 
-    public Equipamento(Integer id, String nome,TipoEquipamento tipo, String marca, double consumoWatt) {
-        this.id = id;
-        this.tipo = tipo;
-        this.marca = marca;
-        this.consumoWatt = consumoWatt;
-        this.nome = nome;
-    }
+
 
     public Integer getId() {
         return id;
@@ -59,11 +52,4 @@ public class Equipamento {
         this.nome = nome;
     }
 
-    public double getConsumoWatt() {
-        return consumoWatt;
-    }
-
-    public void setConsumoWatt(double consumoWatt) {
-        this.consumoWatt = consumoWatt;
-    }
 }

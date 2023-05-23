@@ -6,17 +6,19 @@ public class Ingrediente {
     private String nome;
     private UnidadeDeMedidaIngrediente unidadeDeMedida;
     private double preco;
+    private double custoUnitario;
     private double peso;
 
     public Ingrediente() {
     }
 
-    public Ingrediente(Integer id, String nome, UnidadeDeMedidaIngrediente unidadeDeMedida, double preco, double peso) {
+    public Ingrediente(Integer id, String nome, UnidadeDeMedidaIngrediente unidadeDeMedida, double preco, double peso, double custoUnitario) {
         this.id = id;
         this.nome = nome;
         this.unidadeDeMedida = unidadeDeMedida;
         this.preco = preco;
         this.peso = peso;
+        this.custoUnitario = custoUnitario;
     }
 
 
@@ -58,5 +60,13 @@ public class Ingrediente {
 
     public void setPeso(double peso) {
         this.peso = peso;
+    }
+
+    public double getCustoUnitario() {
+        return custoUnitario;
+    }
+
+    public void setCustoUnitario(double custoUnitario) {
+        this.custoUnitario = custoUnitario;
     }
 }

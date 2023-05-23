@@ -5,6 +5,7 @@ public class ProdutoXEquipamento {
     private Integer id;
     private Equipamento equipamento;
     private Integer tempoDeUsoEmMinutos;
+    private double custo;
 
     public ProdutoXEquipamento() {
     }
@@ -39,5 +40,13 @@ public class ProdutoXEquipamento {
 
     public void setTempoDeUsoEmMinutos(Integer tempoDeUsoEmMinutos) {
         this.tempoDeUsoEmMinutos = tempoDeUsoEmMinutos;
+    }
+
+    public double getCusto() {
+        return custo;
+    }
+
+    public void setCusto(double custo) {
+        this.custo = custo;
     }
 }

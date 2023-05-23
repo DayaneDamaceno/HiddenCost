@@ -7,6 +7,7 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
+    private TipoUsuario tipo;
 
     public Usuario() {
     }
@@ -73,5 +74,13 @@ public class Usuario {
         String EMAIL_REGEX =  "^(.+)@(.+)$";
         Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
         return EMAIL_PATTERN.matcher(this.email).matches();
+    }
+
+    public TipoUsuario getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoUsuario tipo) {
+        this.tipo = tipo;
     }
 }

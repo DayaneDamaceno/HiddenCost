@@ -5,6 +5,7 @@ public class ProdutoXIngrediente {
     private int id;
     private Ingrediente ingrediente;
     private double medida;
+    private double custoUnitario;
 
     public ProdutoXIngrediente() {
     }
@@ -12,10 +13,11 @@ public class ProdutoXIngrediente {
         this.ingrediente = ingrediente;
         this.medida = medida;
     }
-    public ProdutoXIngrediente(int id, Ingrediente ingrediente, double medida) {
+    public ProdutoXIngrediente(int id, Ingrediente ingrediente, double medida, double custoUnitario) {
         this.id = id;
         this.ingrediente = ingrediente;
         this.medida = medida;
+        this.custoUnitario = custoUnitario;
     }
     public int getId() {
         return id;
@@ -39,5 +41,13 @@ public class ProdutoXIngrediente {
 
     public void setMedida(double medida) {
         this.medida = medida;
+    }
+
+    public double getCustoUnitario() {
+        return custoUnitario;
+    }
+
+    public void setCustoUnitario(double custoUnitario) {
+        this.custoUnitario = custoUnitario;
     }
 }

@@ -20,11 +20,12 @@ public class ProdutoXIngredienteDAO {
 
     public void salvar(Produto produto, ProdutoXIngrediente ingrediente) {
         try {
-            String query = "insert into PRODUTOS_INGREDIENTES (id_produto, id_ingrediente, medida) values (?,?,?)";
+            String query = "insert into PRODUTOS_INGREDIENTES (id_produto, id_ingrediente, medida, custo_unitario) values (?,?,?,?)";
             PreparedStatement statement = databaseConnection.prepareStatement(query);
             statement.setInt(1, produto.getId());
             statement.setInt(2, ingrediente.getIngrediente().getId());
             statement.setDouble(3, ingrediente.getMedida());
+            statement.setDouble(4, ingrediente.getCustoUnitario());
             statement.execute();
 
         }catch (SQLException err){
@@ -33,10 +34,11 @@ public class ProdutoXIngredienteDAO {
     }
     public void atualizar(Produto produto, ProdutoXIngrediente ingrediente) {
         try {
-            String query = "UPDATE PRODUTOS_INGREDIENTES SET medida = ? WHERE id_produto = ?";
+            String query = "UPDATE PRODUTOS_INGREDIENTES SET medida = ?, custo_unitario = ? WHERE id_produto = ?";
             PreparedStatement statement = databaseConnection.prepareStatement(query);
             statement.setDouble(1, ingrediente.getMedida());
-            statement.setInt(2, produto.getId());
+            statement.setDouble(2, ingrediente.getCustoUnitario());
+            statement.setInt(3, produto.getId());
             statement.execute();
 
         }catch (SQLException err){
@@ -58,7 +60,7 @@ public class ProdutoXIngredienteDAO {
     public List<ProdutoXIngrediente> obterIngredientesDeUmProduto(Produto produto){
         List<ProdutoXIngrediente> ingredientes = new ArrayList<>();
         String query = """
-                select I.*, PI.id_produto_ingrediente, PI.medida
+                select I.*, PI.id_produto_ingrediente, PI.medida, PI.custo_unitario
                 from INGREDIENTES I
                          inner join PRODUTOS_INGREDIENTES PI
                                     on I.id_ingrediente = PI.id_ingrediente
@@ -74,12 +76,14 @@ public class ProdutoXIngredienteDAO {
                         UnidadeDeMedidaIngrediente.valueOf(
                                 result.getString("UNIDADE_DE_MEDIDA")),
                         result.getDouble("PRECO"),
-                        result.getDouble("PESO")
+                        result.getDouble("PESO"),
+                        result.getDouble("CUSTO_UNITARIO")
                 );
                 ingredientes.add(new ProdutoXIngrediente(
                         result.getInt("id_produto_ingrediente"),
                         ingrediente,
-                        result.getInt("medida")));
+                        result.getInt("medida"),
+                        result.getDouble("custo_unitario")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(IngredienteDAO.class.getName()).log(Level.SEVERE, null, ex);

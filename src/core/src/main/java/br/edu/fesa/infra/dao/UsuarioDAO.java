@@ -1,5 +1,7 @@
 package br.edu.fesa.infra.dao;
 
+import br.edu.fesa.infra.models.TipoEquipamento;
+import br.edu.fesa.infra.models.TipoUsuario;
 import br.edu.fesa.infra.models.Usuario;
 
 import java.sql.*;
@@ -50,6 +52,7 @@ public class UsuarioDAO implements Dao<Usuario> {
             while (resultSet.next()) {
                 usuario.setId(resultSet.getInt("ID_USUARIO"));
                 usuario.setNome(resultSet.getString("nome"));
+                usuario.setTipo(TipoUsuario.valueOf(resultSet.getString("tipo")));
             }
 
             return usuario;
@@ -63,7 +66,7 @@ public class UsuarioDAO implements Dao<Usuario> {
     @Override
     public Usuario salvar(Usuario usuario) {
         try {
-            String query = "Insert into USUARIOS (nome, email, senha) values (?,?,?)";
+            String query = "Insert into USUARIOS (nome, email, senha, tipo) values (?,?,?, 'COMUM')";
             PreparedStatement statement = databaseConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, usuario.getNome());
             statement.setString(2, usuario.getEmail());

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="1256.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.presentation.UsuariosController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <VBox prefHeight="140.0" prefWidth="107.0" spacing="12.0" style="-fx-background-color: F3F5F9;" GridPane.columnSpan="2" GridPane.rowSpan="12">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Logo.jpg" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="16.0" />
+               </VBox.margin>
+            </ImageView>
+            <Button graphicTextGap="9.0" layoutX="36.0" layoutY="97.0" mnemonicParsing="false" style="-fx-background-color: F3F5F9;" text="Usuarios" textFill="#0e4ae4">
+               <graphic>
+                  <SVGPath content="M14.2706 4.25432L8.27059 1.58765C8.18527 1.54974 8.09295 1.53015 7.99959 1.53015C7.90622 1.53015 7.8139 1.54974 7.72859 1.58765L1.72859 4.25432C1.71525 4.26032 1.70592 4.27032 1.69259 4.27765C1.67392 4.28699 1.65392 4.29299 1.63659 4.30432C1.62192 4.31432 1.61059 4.32699 1.59659 4.33765C1.54785 4.37387 1.50511 4.41751 1.46992 4.46699C1.45659 4.48566 1.44259 4.50232 1.43059 4.52099C1.41074 4.55622 1.3938 4.59301 1.37992 4.63099C1.37392 4.64899 1.36459 4.66565 1.35925 4.68365C1.34251 4.74221 1.33376 4.80276 1.33325 4.86365V11.5303C1.33325 11.7943 1.48792 12.0323 1.72925 12.1397L7.72925 14.8063C7.81592 14.845 7.90792 14.8637 7.99992 14.8637C8.09274 14.8613 8.18404 14.8395 8.26792 14.7997L8.27059 14.8063L14.2706 12.1397C14.3885 12.0874 14.4887 12.0019 14.559 11.8938C14.6293 11.7856 14.6667 11.6593 14.6666 11.5303V4.86365C14.6667 4.73465 14.6293 4.60839 14.559 4.50022C14.4887 4.39205 14.3885 4.30662 14.2706 4.25432ZM7.99992 2.92699L12.3586 4.86365L7.99992 6.80032L7.12792 6.41299L3.64192 4.86365L7.99992 2.92699ZM2.66659 11.0977V5.88965L7.33325 7.96365V13.171L2.66659 11.0977ZM8.66659 13.171V7.96365L13.3333 5.88965V11.0977L8.66659 13.171M14.2706 4.25432L8.27059 1.58765C8.18527 1.54974 8.09295 1.53015 7.99959 1.53015C7.90622 1.53015 7.8139 1.54974 7.72859 1.58765L1.72859 4.25432C1.71525 4.26032 1.70592 4.27032 1.69259 4.27765C1.67392 4.28699 1.65392 4.29299 1.63659 4.30432C1.62192 4.31432 1.61059 4.32699 1.59659 4.33765C1.54785 4.37387 1.50511 4.41751 1.46992 4.46699C1.45659 4.48566 1.44259 4.50232 1.43059 4.52099C1.41074 4.55622 1.3938 4.59301 1.37992 4.63099C1.37392 4.64899 1.36459 4.66565 1.35925 4.68365C1.34251 4.74221 1.33376 4.80276 1.33325 4.86365V11.5303C1.33325 11.7943 1.48792 12.0323 1.72925 12.1397L7.72925 14.8063C7.81592 14.845 7.90792 14.8637 7.99992 14.8637C8.09274 14.8613 8.18404 14.8395 8.26792 14.7997L8.27059 14.8063L14.2706 12.1397C14.3885 12.0874 14.4887 12.0019 14.559 11.8938C14.6293 11.7856 14.6667 11.6593 14.6666 11.5303V4.86365C14.6667 4.73465 14.6293 4.60839 14.559 4.50022C14.4887 4.39205 14.3885 4.30662 14.2706 4.25432ZM7.99992 2.92699L12.3586 4.86365L7.99992 6.80032L7.12792 6.41299L3.64192 4.86365L7.99992 2.92699ZM2.66659 11.0977V5.88965L7.33325 7.96365V13.171L2.66659 11.0977ZM8.66659 13.171V7.96365L13.3333 5.88965V11.0977L8.66659 13.171Z" fill="#0e4ae4" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button graphicTextGap="9.0" mnemonicParsing="false" onAction="#sendToLoginView" style="-fx-background-color: F3F5F9;" text="Sair" textFill="#737784">
+               <graphic>
+                  <SVGPath content="M10.5 2.99995L9.513 3.98695L11.319 5.79995H4.2V7.19995H11.319L9.513 9.00595L10.5 9.99995L14 6.49995L10.5 2.99995ZM1.4 1.59995H7V0.199951H1.4C0.63 0.199951 0 0.829951 0 1.59995V11.4C0 12.17 0.63 12.8 1.4 12.8H7V11.4H1.4V1.59995Z" fill="#737784" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="26.0" left="26.0" right="26.0" top="26.0" />
+         </padding>
+      </VBox>
+      <Label text="Usuarios" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ListView fx:id="listView" onMouseClicked="#onClickItemListUsuarios" prefHeight="200.0" prefWidth="762.0" style="-fx-background-color: FFFFFF; -fx-border-radius: 10px;" stylesheets="@css/table.css" GridPane.columnIndex="3" GridPane.columnSpan="9" GridPane.rowIndex="2" GridPane.rowSpan="9">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ListView>
+      <VBox fx:id="detailContainer" prefHeight="200.0" prefWidth="100.0" visible="false" GridPane.columnIndex="7" GridPane.columnSpan="5" GridPane.rowIndex="1" GridPane.rowSpan="10">
+         <children>
+            <HBox fillHeight="false" prefHeight="53.0" prefWidth="492.0">
+               <children>
+                  <VBox prefHeight="58.0" prefWidth="214.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="12.0">
+                           <children>
+                              <Label fx:id="labelNome" text="Nome">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Button mnemonicParsing="false" onAction="#onClickExcluirButton" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: DA0D00;" text="Excluir" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="12.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <Label layoutX="10.0" layoutY="10.0" text="Editar usuario">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="14.0">
+               <children>
+                  <VBox prefHeight="56.0" prefWidth="358.0" spacing="2.0">
+                     <children>
+                        <Label text="Nome">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nome" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="358.0" spacing="2.0">
+                     <children>
+                        <Label text="E-mail">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="email" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="58.0" prefWidth="358.0" spacing="6.0">
+                     <children>
+                        <Label fx:id="labelMedida" text="Nova senha">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="senha" promptText="Senha" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-radius: 3px;" />
+                     </children>
+                  </VBox>
+                  <Button mnemonicParsing="false" onAction="#onClickEditarButton" prefHeight="29.0" prefWidth="135.0" style="-fx-background-color: #0589ff;" text="Salvar Alterações" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+         </padding>
+      </VBox>
+   </children>
+</GridPane>

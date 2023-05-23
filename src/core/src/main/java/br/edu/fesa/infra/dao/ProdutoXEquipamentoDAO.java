@@ -74,8 +74,7 @@ public class ProdutoXEquipamentoDAO {
                 Equipamento equipamento = new Equipamento(result.getInt("ID_EQUIPAMENTO"),
                         result.getString("NOME"),
                         TipoEquipamento.valueOf(result.getString("TIPO")),
-                        result.getString("MARCA"),
-                        result.getDouble("CONSUMOWATT"));
+                        result.getString("MARCA"));
 
                 equipamentos.add(new ProdutoXEquipamento(
                         result.getInt("id_produto_equipamento"),

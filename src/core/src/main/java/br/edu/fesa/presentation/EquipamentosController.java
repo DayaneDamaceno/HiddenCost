@@ -28,8 +28,6 @@ public class EquipamentosController extends MenuController implements Initializa
     @FXML
     private ComboBox tipo;
     @FXML
-    private TextField consumoWatt;
-    @FXML
     private ListView<Equipamento> listView;
     @FXML
     private VBox detailContainer;
@@ -38,7 +36,7 @@ public class EquipamentosController extends MenuController implements Initializa
     @FXML
     private Label labelNome;
     @FXML
-    private Label labelConsumoWatt;
+    private Label labelTipo;
     @FXML
     private Button btnNovoEquipamento;
 
@@ -57,7 +55,6 @@ public class EquipamentosController extends MenuController implements Initializa
         equipamento.setNome(nome.getText());
         equipamento.setTipo(TipoEquipamento.valueOf(tipo.getSelectionModel().getSelectedItem().toString()));
         equipamento.setMarca(marca.getText());
-        equipamento.setConsumoWatt(Double.parseDouble(consumoWatt.getText()));
 
         equipamentoDAO.salvar(equipamento);
         MainApplication.setRoot("equipamentos-view");
@@ -70,7 +67,6 @@ public class EquipamentosController extends MenuController implements Initializa
         equipamento.setNome(nome.getText());
         equipamento.setTipo(TipoEquipamento.valueOf(tipo.getSelectionModel().getSelectedItem().toString()));
         equipamento.setMarca(marca.getText());
-        equipamento.setConsumoWatt(Double.parseDouble(consumoWatt.getText()));
 
         equipamentoDAO.atualizar(equipamento);
         toggleDetail();
@@ -94,10 +90,6 @@ public class EquipamentosController extends MenuController implements Initializa
             listView.setItems(equipamentosObservableList);
             listView.setCellFactory(ingredienteListView -> new EquipamentoListViewCell());
         }
-
-        if(consumoWatt != null)
-            consumoWatt.setTextFormatter(new TextFormatter<>(validaNumeroDecimalOuInteiro()));
-
 
         if(tipo != null){
             tiposEquipamentoObservableList = FXCollections.observableArrayList();
@@ -133,9 +125,7 @@ public class EquipamentosController extends MenuController implements Initializa
         marca.setText(equipamentoSelecionado.getMarca());
 
         tipo.getSelectionModel().select(equipamentoSelecionado.getTipo().ordinal());
-
-        labelConsumoWatt.setText(equipamentoSelecionado.getConsumoWatt() + "kWh");
-        consumoWatt.setText(Double.toString(equipamentoSelecionado.getConsumoWatt()));
+        labelTipo.setText(equipamentoSelecionado.getTipo().toString().toLowerCase());
     }
     protected void toggleDetail(){
         if(detailContainer.isVisible()){

@@ -1,6 +1,7 @@
 package br.edu.fesa.presentation;
 
 import br.edu.fesa.infra.dao.UsuarioDAO;
+import br.edu.fesa.infra.models.TipoUsuario;
 import br.edu.fesa.infra.models.Usuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -20,17 +21,20 @@ public class LoginController extends MenuController {
         UsuarioDAO usuarioDao = new UsuarioDAO();
 
         Usuario usuario = new Usuario();
-//        usuario.setEmail(email.getText());
-//        usuario.setSenha(senha.getText());
-        usuario.setEmail("day@gmail.com");
-        usuario.setSenha("Dayane@08642ts");
+        usuario.setEmail(email.getText());
+        usuario.setSenha(senha.getText());
+//        usuario.setEmail("day@gmail.com");
+//        usuario.setSenha("Dayane@08642ts");
         usuario = usuarioDao.buscar(usuario);
 
         if(usuario != null){
             System.out.printf("%s é um usuario valido%n", usuario.getNome());
             AppContext.usuarioLogado = usuario;
-//            MainApplication.setRoot("listagem-usuario");
-            sendToProdutosView();
+
+            if(usuario.getTipo() == TipoUsuario.ADMIN)
+                MainApplication.setRoot("usuarios-view");
+            else
+                sendToProdutosView();
             return;
         }
 

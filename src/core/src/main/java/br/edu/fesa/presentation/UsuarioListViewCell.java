@@ -1,8 +1,8 @@
 package br.edu.fesa.presentation;
 
 
-import br.edu.fesa.infra.models.Equipamento;
 import br.edu.fesa.infra.models.Ingrediente;
+import br.edu.fesa.infra.models.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -12,29 +12,29 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.text.NumberFormat;
 
-public class EquipamentoListViewCell extends ListCell<Equipamento> {
+public class UsuarioListViewCell extends ListCell<Usuario> {
     @FXML
     private Label nome;
     @FXML
-    private Label tipo;
+    private Label email;
     @FXML
     private VBox box;
     @FXML
     private FXMLLoader mLLoader;
 
     @Override
-    protected void updateItem(Equipamento equipamento, boolean empty) {
-        super.updateItem(equipamento, empty);
+    protected void updateItem(Usuario usuario, boolean empty) {
+        super.updateItem(usuario, empty);
 
         setStyle("-fx-background-color: #ffffff");
-        if(empty || equipamento == null) {
+        if(empty || usuario == null) {
 
             setText(null);
             setGraphic(null);
 
         } else {
             if (mLLoader == null) {
-                mLLoader = new FXMLLoader(MainApplication.class.getResource("equipamento-cell-list-view.fxml"));
+                mLLoader = new FXMLLoader(MainApplication.class.getResource("usuario-cell-list-view.fxml"));
                 mLLoader.setController(this);
                 try {
                     mLLoader.load();
@@ -44,8 +44,9 @@ public class EquipamentoListViewCell extends ListCell<Equipamento> {
 
             }
 
-            nome.setText(equipamento.getNome());
-            tipo.setText(equipamento.getTipo().toString().toLowerCase());
+            nome.setText(usuario.getNome());
+            email.setText(usuario.getEmail());
+
 
             setText(null);
             setGraphic(box);
