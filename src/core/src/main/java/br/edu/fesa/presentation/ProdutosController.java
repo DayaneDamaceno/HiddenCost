@@ -151,6 +151,13 @@ public class ProdutosController extends MenuController implements Initializable 
             colunaNomeIngrediente.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIngrediente().getNome()));
             colunaMedida.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getMedida()));
             colunaMedida.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+            colunaMedida.setOnEditCommit(event -> {
+                Double novoValor = event.getNewValue();
+                TablePosition<?, ?> pos = event.getTablePosition();
+                int linha = pos.getRow();
+                ProdutoXIngrediente objeto = tableIngredientes.getItems().get(linha);
+                objeto.setMedida(novoValor);
+            });
             tableIngredientes.setItems(ingredientesSelecionados);
         }
         if(tableEquipamentos != null){
@@ -159,6 +166,13 @@ public class ProdutosController extends MenuController implements Initializable 
             colunaNomeEquipamento.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getEquipamento().getNome()));
             colunaTempoDeUsoEmMinutos.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTempoDeUsoEmMinutos()));
             colunaTempoDeUsoEmMinutos.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+            colunaTempoDeUsoEmMinutos.setOnEditCommit(event -> {
+                Integer novoValor = event.getNewValue();
+                TablePosition<?, ?> pos = event.getTablePosition();
+                int linha = pos.getRow();
+                ProdutoXEquipamento objeto = tableEquipamentos.getItems().get(linha);
+                objeto.setTempoDeUsoEmMinutos(novoValor);
+            });
             tableEquipamentos.setItems(equipamentosSelecionados);
         }
 

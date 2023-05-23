@@ -77,3 +77,5 @@ drop table EQUIPAMENTOS;
 drop table USUARIOS;
 
 
+
+
