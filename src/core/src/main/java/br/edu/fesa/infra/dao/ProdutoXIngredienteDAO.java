@@ -1,6 +1,7 @@
 package br.edu.fesa.infra.dao;
 
 import br.edu.fesa.infra.models.*;
+import br.edu.fesa.presentation.AppContext;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -72,6 +73,7 @@ public class ProdutoXIngredienteDAO {
             while (result.next()) {
                 Ingrediente ingrediente = new Ingrediente(
                         result.getInt("ID_INGREDIENTE"),
+                        AppContext.usuarioLogado,
                         result.getString("NOME"),
                         UnidadeDeMedidaIngrediente.valueOf(
                                 result.getString("UNIDADE_DE_MEDIDA")),

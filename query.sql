@@ -1,13 +1,5 @@
 CREATE DATABASE hiddenCost;
-CREATE TABLE INGREDIENTES
-(
-    id_ingrediente INTEGER identity(1,1) PRIMARY KEY NOT NULL,
-    preco DECIMAL(10,2),
-    custo_unitario DECIMAL(10,2),
-    peso DECIMAL(10,2),
-    unidade_de_medida varchar(50) NOT NULL,
-    nome VARCHAR(70) NOT NULL
-)
+
 CREATE TABLE USUARIOS
 (
     id_usuario INTEGER identity(1,1) PRIMARY KEY NOT NULL,
@@ -15,6 +7,17 @@ CREATE TABLE USUARIOS
     senha VARCHAR(30) NOT NULL,
     email VARCHAR(60) NOT NULL,
     tipo varchar(50) NOT NULL, -- ADMIN, COMUM
+)
+CREATE TABLE INGREDIENTES
+(
+    id_ingrediente INTEGER identity(1,1) PRIMARY KEY NOT NULL,
+    id_usuario INTEGER NOT NULL,
+    preco DECIMAL(10,2),
+    custo_unitario DECIMAL(10,2),
+    peso DECIMAL(10,2),
+    unidade_de_medida varchar(50) NOT NULL,
+    nome VARCHAR(70) NOT NULL
+    CONSTRAINT FK_ingrediente_usuario FOREIGN KEY (id_usuario) REFERENCES USUARIOS (id_usuario)
 )
 CREATE TABLE PRODUTOS
 (
@@ -39,9 +42,11 @@ CREATE TABLE PRODUTOS_INGREDIENTES
 CREATE TABLE EQUIPAMENTOS
 (
     id_equipamento INTEGER identity(1,1) PRIMARY KEY NOT NULL,
+    id_usuario INTEGER NOT NULL,
     nome varchar(50) NOT NULL,
     tipo varchar(50) NOT NULL, -- UTENSILIOS, ELETRODOMESTICO, GAS
     marca VARCHAR(20) NOT NULL,
+    CONSTRAINT FK_equipamento_usuario FOREIGN KEY (id_usuario) REFERENCES USUARIOS (id_usuario)
 )
 CREATE TABLE PRODUTOS_EQUIPAMENTOS
 (
@@ -53,11 +58,12 @@ CREATE TABLE PRODUTOS_EQUIPAMENTOS
     CONSTRAINT FK_equipamento FOREIGN KEY (id_equipamento) REFERENCES EQUIPAMENTOS (id_equipamento) ON DELETE CASCADE ON UPDATE CASCADE
 )
 
-insert into INGREDIENTES (preco, peso, unidade_de_medida, nome, custo_unitario) values (12.5, 23, 'GRAMAS','Farinha', 2)
-insert into INGREDIENTES (preco, peso, unidade_de_medida, nome, custo_unitario) values (9.5, 23, 'UNIDADE','Outro ingrediente', 5)
-insert into EQUIPAMENTOS (nome, tipo, marca) values ('Batedeira','UTENSILIOS', 'Brastemp')
-insert into EQUIPAMENTOS (nome, tipo, marca) values ('Outro equipamento','UTENSILIOS', 'Marca')
 insert into USUARIOS (nome, email, senha, tipo) values ('dayane', 'day@gmail.com', 'Dayane@08642ts', 'ADMIN')
+insert into USUARIOS (nome, email, senha, tipo) values ('arthur', 'a@gmail.com', 'Arthur@08642ts', 'COMUM')
+insert into INGREDIENTES (preco, peso, unidade_de_medida, nome, custo_unitario, id_usuario) values (12.5, 23, 'GRAMAS','Farinha', 2, 1)
+insert into INGREDIENTES (preco, peso, unidade_de_medida, nome, custo_unitario, id_usuario) values (9.5, 23, 'UNIDADE','Outro ingrediente', 5, 1)
+insert into EQUIPAMENTOS (nome, tipo, marca, id_usuario) values ('Batedeira','UTENSILIOS', 'Brastemp', 1)
+insert into EQUIPAMENTOS (nome, tipo, marca, id_usuario) values ('Outro equipamento','UTENSILIOS', 'Marca', 1)
 insert into PRODUTOS (id_usuario, nome, peso, preco_unitario) values (1, 'Browni', 40, 5.9)
 insert into PRODUTOS_EQUIPAMENTOS (id_produto, id_equipamento, tempo_de_uso) values (1,2, 10)
 insert into PRODUTOS_EQUIPAMENTOS (id_produto, id_equipamento, tempo_de_uso) values (1,1, 10)
@@ -71,4 +77,3 @@ drop table EQUIPAMENTOS;
 drop table USUARIOS;
 
 
-select * from INGREDIENTES

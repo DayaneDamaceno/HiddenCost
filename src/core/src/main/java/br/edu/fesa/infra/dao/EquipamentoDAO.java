@@ -3,6 +3,7 @@ package br.edu.fesa.infra.dao;
 import br.edu.fesa.infra.models.Equipamento;
 import br.edu.fesa.infra.models.Produto;
 import br.edu.fesa.infra.models.TipoEquipamento;
+import br.edu.fesa.presentation.AppContext;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,17 +22,19 @@ public class EquipamentoDAO implements Dao<Equipamento> {
     @Override
     public List<Equipamento> obterTodos() {
         List<Equipamento> equipamentos = new ArrayList<>();
-        String query = "SELECT * FROM EQUIPAMENTOS";
+        String query = "SELECT * FROM EQUIPAMENTOS where id_usuario = ?";
         try {
             PreparedStatement statement = databaseConnection.prepareStatement(query);
+            statement.setInt(1, AppContext.usuarioLogado.getId());
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 equipamentos.add(
                         new Equipamento(
                                 result.getInt("ID_EQUIPAMENTO"),
-                                result.getString("NOME"),
+                                AppContext.usuarioLogado,
                                 TipoEquipamento.valueOf(result.getString("TIPO")),
-                                result.getString("MARCA")
+                                result.getString("MARCA"),
+                                result.getString("NOME")
                         ));
             }
         } catch (SQLException ex) {
@@ -73,11 +76,12 @@ public class EquipamentoDAO implements Dao<Equipamento> {
     @Override
     public Equipamento salvar(Equipamento equipamento) {
         try {
-            String query = "Insert into EQUIPAMENTOS (nome, tipo, marca) values (?,?,?)";
+            String query = "Insert into EQUIPAMENTOS (nome, tipo, marca, id_usuario) values (?,?,?,?)";
             PreparedStatement statement = databaseConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, equipamento.getNome());
             statement.setString(2, equipamento.getTipo().toString());
             statement.setString(3, equipamento.getMarca());
+            statement.setInt(4, AppContext.usuarioLogado.getId());
             statement.execute();
 
             ResultSet rs = statement.getGeneratedKeys();

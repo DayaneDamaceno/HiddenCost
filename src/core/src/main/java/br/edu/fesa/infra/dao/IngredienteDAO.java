@@ -1,6 +1,7 @@
 package br.edu.fesa.infra.dao;
 
 import br.edu.fesa.infra.models.*;
+import br.edu.fesa.presentation.AppContext;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,14 +20,17 @@ public class IngredienteDAO implements Dao<Ingrediente> {
     @Override
     public List<Ingrediente> obterTodos() {
         List<Ingrediente> ingredientes = new ArrayList<>();
-        String query = "SELECT * FROM INGREDIENTES";
+        String query = "SELECT * FROM INGREDIENTES where id_usuario = ?";
         try {
+
             PreparedStatement statement = databaseConnection.prepareStatement(query);
+            statement.setInt(1, AppContext.usuarioLogado.getId());
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 ingredientes.add(
                         new Ingrediente(
                                 result.getInt("ID_INGREDIENTE"),
+                                AppContext.usuarioLogado,
                                 result.getString("NOME"),
                                 UnidadeDeMedidaIngrediente.valueOf(
                                         result.getString("UNIDADE_DE_MEDIDA")),
@@ -74,13 +78,14 @@ public class IngredienteDAO implements Dao<Ingrediente> {
         try {
             ingrediente.setCustoUnitario(ingrediente.getPreco() / ingrediente.getPeso());
 
-            String query = "Insert into INGREDIENTES (nome, preco, peso, unidade_de_medida, custo_unitario) values (?,?,?,?,?)";
+            String query = "Insert into INGREDIENTES (nome, preco, peso, unidade_de_medida, custo_unitario, id_usuario) values (?,?,?,?,?,?)";
             PreparedStatement statement = databaseConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, ingrediente.getNome());
             statement.setDouble(2, ingrediente.getPreco());
             statement.setDouble(3, ingrediente.getPeso());
             statement.setString(4, ingrediente.getUnidadeDeMedida().toString());
             statement.setDouble(5, ingrediente.getCustoUnitario());
+            statement.setInt(6, AppContext.usuarioLogado.getId());
             statement.execute();
 
             ResultSet rs = statement.getGeneratedKeys();

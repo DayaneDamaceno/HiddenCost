@@ -3,6 +3,7 @@ package br.edu.fesa.infra.models;
 
 public class Ingrediente {
     private Integer id;
+    private Usuario usuario;
     private String nome;
     private UnidadeDeMedidaIngrediente unidadeDeMedida;
     private double preco;
@@ -12,8 +13,9 @@ public class Ingrediente {
     public Ingrediente() {
     }
 
-    public Ingrediente(Integer id, String nome, UnidadeDeMedidaIngrediente unidadeDeMedida, double preco, double peso, double custoUnitario) {
+    public Ingrediente(Integer id, Usuario usuario, String nome, UnidadeDeMedidaIngrediente unidadeDeMedida, double preco, double peso, double custoUnitario) {
         this.id = id;
+        this.usuario = usuario;
         this.nome = nome;
         this.unidadeDeMedida = unidadeDeMedida;
         this.preco = preco;
@@ -68,5 +70,13 @@ public class Ingrediente {
 
     public void setCustoUnitario(double custoUnitario) {
         this.custoUnitario = custoUnitario;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

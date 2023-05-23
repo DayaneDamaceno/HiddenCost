@@ -3,6 +3,7 @@ package br.edu.fesa.infra.models;
 
 public class Equipamento {
     private Integer id;
+    private Usuario usuario;
     private TipoEquipamento tipo;
     private String marca;
     private String nome;
@@ -18,6 +19,13 @@ public class Equipamento {
         this.nome = nome;
     }
 
+    public Equipamento(Integer id, Usuario usuario, TipoEquipamento tipo, String marca, String nome) {
+        this.id = id;
+        this.usuario = usuario;
+        this.tipo = tipo;
+        this.marca = marca;
+        this.nome = nome;
+    }
 
 
     public Integer getId() {
@@ -52,4 +60,11 @@ public class Equipamento {
         this.nome = nome;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }
